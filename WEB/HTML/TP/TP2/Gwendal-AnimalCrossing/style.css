@@ -1,0 +1,28 @@
+table {
+    background-color: white;
+}
+
+thead {
+    height: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+b {
+    font-size: large;
+
+}
+
+body {
+    background-image: url(img/thumb-1920-956578.jpg);
+    background-attachment: fixed;
+}
