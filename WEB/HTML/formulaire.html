@@ -32,7 +32,9 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
 
 
 -->
-<form>
+<a href="pageCible?attr=value&attr2=value">ICI</a>
+
+<form action="pageCible.html" method="POST">
 
   <fieldset>
     <legend>Information personnelles</legend>
@@ -40,15 +42,15 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
     <table>
       <input name="id" type="hidden" value="37">
 
-      <tr><td>ID *</td><td><input readonly name="id" type="text" value="37"></td></tr>
-      <tr><td>ID *</td><td><input disabled name="id" type="text" value="37"></td></tr>
+      <tr><td>ID *</td><td><input readonly  type="text" value="37"></td></tr>
+      <tr><td>ID *</td><td><input disabled  type="text" value="37"></td></tr>
 
-      <tr><td>Login *</td><td><input  autofocus required placeholder="Saisir login" value="Jordan" type="text" title="login"  size="25" minlength="8"  maxlength="25"/></td></tr>
-      <tr><td>Password *</td><td><input required value="password" pattern="[A-z0-9!@#$&*?-]{4,8}" placeholder="Saisir password" type="password" title="4 a 8 caracteres (A1#)"/></td></tr>
-      <tr><td>Mail</td><td><input placeholder="Saisir votre email"  type="email"/></td></tr>
-      <tr><td>Age</td><td><input placeholder="Saisir age" type="number" min="0" max="56" step="2"/></td></tr>
-      <tr><td>Salaire</td><td><input placeholder="Saisir salaire" step="0.01" type="number"/></td></tr>
-      <tr><td>Couleur fav</td><td><input  type="color"/></td></tr>
+      <tr><td><label for="login">Login *</label></td><td><input name="login" id="login" autofocus required placeholder="Saisir login" value="Jordan" type="text" title="login"  size="25" minlength="8"  maxlength="25"/></td></tr>
+      <tr><td>Password *</td><td><input name="password" required value="password" pattern="[A-z0-9!@#$&*?-]{4,8}" placeholder="Saisir password" type="password" title="4 a 8 caracteres (A1#)"/></td></tr>
+      <tr><td>Mail</td><td><input name="mail" placeholder="Saisir votre email"  type="email"/></td></tr>
+      <tr><td>Age</td><td><input name="age" placeholder="Saisir age" type="number" min="0" max="56" step="2"/></td></tr>
+      <tr><td>Salaire</td><td><input name="salaire" placeholder="Saisir salaire" step="0.01" type="number"/></td></tr>
+      <tr><td>Couleur fav</td><td><input  name="couleur" type="color"/></td></tr>
       <tr><td>Note</td><td><input name="range" min="0" max="10" type="range"/></td></tr>
 
 
@@ -60,18 +62,18 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
     <legend>Suite</legend>
     <table>
 
-      <tr><td>Site web</td><td><input placeholder="Saisir url" type="url"/></td></tr>
-      <tr><td>Naissance</td><td><input value="2023-01-01" min="2023-01-01" max="2023-01-31" type="date"/></td></tr>
-      <tr><td>Heure</td><td><input type="time" step="900" min="09:30" max="17:30"/></td></tr>
-      <tr><td>Semaine</td><td><input type="week"/></td></tr>
-      <tr><td>Tel</td><td><input placeholder="Saisir tel" type="tel"/></td></tr>
+      <tr><td>Site web</td><td><input name="site" placeholder="Saisir url" type="url"/></td></tr>
+      <tr><td>Naissance</td><td><input name="naissance" value="2023-01-01" min="2023-01-01" max="2023-01-31" type="date"/></td></tr>
+      <tr><td>Heure</td><td><input name="heure" type="time" step="900" min="09:30" max="17:30"/></td></tr>
+      <tr><td>Semaine</td><td><input name="semaine" type="week"/></td></tr>
+      <tr><td>Tel</td><td><input name="tel" placeholder="Saisir tel" type="tel"/></td></tr>
       <tr>
         <td>Choix OS</td>
         <td>
-          <select>
-            <option>MacOS</option>
-            <option>Linux</option>
-            <option selected>Windows</option>
+          <select name="os">
+            <option value="1">MacOS</option>
+            <option value="15">Linux</option>
+            <option  value="3" selected>Windows</option>
           </select>
         </td>
       </tr>
@@ -97,9 +99,9 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
       <tr>
         <td>Civilite</td>
         <td>
-          <input required name="civilite" type="radio"> homme
-          <input required name="civilite" type="radio"> femme
-          <input required name="civilite" type="radio"> nb
+          <input id="homme" required name="civilite" value="homme" type="radio"> <label for="homme">homme</label>
+          <input required name="civilite" value="femme" type="radio"> femme
+          <input required name="civilite" value="nb" type="radio"> nb
         </td>
       </tr>
 
@@ -108,22 +110,32 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
       <tr>
         <td>Devs</td>
         <td>
-          <input  required type="checkbox"> Java
-          <input  checked type="checkbox"> SQL
-          <input  type="checkbox"> Python
+          <input  name="dev" value="java" required type="checkbox"> Java
+          <input  name="dev" value="sql" checked type="checkbox"> SQL
+          <input  name="dev" value="python" type="checkbox"> Python
         </td>
       </tr>
-
-
       <tr>
         <td>Description</td>
-        <td><textarea placeholder="Saisir votre bio" cols="80" rows="6"></textarea></td>
+        <td><textarea name="description" placeholder="Saisir votre bio" cols="80" rows="6"></textarea></td>
       </tr>
 
-
+      <tr>
+        <td>CV</td>
+        <td><input type="file"></td>
+      </tr>
       <tr><td colspan="2" align="center"><input type="submit"/><input type="reset"/></td></tr>
 
     </table>
 
   </fieldset>
 </form>
+
+<input type="button" value="Action">
+
+<!--Attention, dans un formulaire, <button> fait office de submit -->
+<button>Action</button>
+
+
+
+<audio src="assets/audio/audio.mp3" autoplay loop></audio>
