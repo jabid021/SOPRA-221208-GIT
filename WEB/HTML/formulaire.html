@@ -1,0 +1,120 @@
+<!--
+Saisie : texte, password, date, email, tel (affiche le clavier numerique sur tel), number (input)
+Liste deroulante => select
+Zone de texte => Textarea
+
+cocher => carre (choix multiple checkbox) / rond (choix unique radio)
+button => submit, reset,button
+
+-->
+<style>
+
+  input:invalid
+  {
+    border: solid 2px red;
+  }
+
+  textarea
+  {
+    resize:none;
+  }
+
+
+</style>
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h1 align="center" title="TITRE DE LA PAGE">Inscription</h1>
+
+<!--
+
+Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
+
+
+-->
+<form>
+
+  <fieldset>
+    <legend>Information personnelles</legend>
+
+    <table>
+      <tr><td>Login *</td><td><input required placeholder="Saisir login" value="Jordan" type="text" title="login"/></td></tr>
+      <tr><td>Password *</td><td><input required value="password" pattern="[A-z0-9!@#$&*?-]{4,8}" placeholder="Saisir password" type="password" title="4 a 8 caracteres (A1#)"/></td></tr>
+      <tr><td>Mail</td><td><input placeholder="Saisir votre email"  type="email"/></td></tr>
+      <tr><td>Age</td><td><input placeholder="Saisir age" type="number"/></td></tr>
+      <tr><td>Salaire</td><td><input placeholder="Saisir salaire" type="number"/></td></tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <legend>Suite</legend>
+    <table>
+
+
+      <tr><td>Site web</td><td><input placeholder="Saisir url" type="url"/></td></tr>
+      <tr><td>Naissance</td><td><input value="2023-01-01" type="date"/></td></tr>
+      <tr><td>Heure</td><td><input type="time"/></td></tr>
+      <tr><td>Semaine</td><td><input type="week"/></td></tr>
+      <tr><td>Tel</td><td><input placeholder="Saisir tel" type="tel"/></td></tr>
+      <tr>
+        <td>Choix OS</td>
+        <td>
+          <select>
+            <option>MacOS</option>
+            <option>Linux</option>
+            <option selected>Windows</option>
+          </select>
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>Choix OS</td>
+        <td>
+          <select>
+            <optgroup label="Systeme UNIX">
+              <option>MacOS</option>
+              <option>Linux</option>
+            </optgroup>
+            <optgroup label="Le reste">
+              <option>Windows</option>
+            </optgroup>
+          </select>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Civilite</td>
+        <td>
+          <input required name="civilite" type="radio"> homme
+          <input required name="civilite" type="radio"> femme
+          <input required name="civilite" type="radio"> nb
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>Devs</td>
+        <td>
+          <input  required type="checkbox"> Java
+          <input  checked type="checkbox"> SQL
+          <input  type="checkbox"> Python
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Description</td>
+        <td><textarea placeholder="Saisir votre bio" cols="80" rows="6"></textarea></td>
+      </tr>
+
+
+      <tr><td colspan="2" align="center"><input type="submit"/><input type="reset"/></td></tr>
+
+    </table>
+
+  </fieldset>
+</form>
