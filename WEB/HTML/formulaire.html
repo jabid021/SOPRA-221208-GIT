@@ -38,11 +38,21 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
     <legend>Information personnelles</legend>
 
     <table>
-      <tr><td>Login *</td><td><input required placeholder="Saisir login" value="Jordan" type="text" title="login"/></td></tr>
+      <input name="id" type="hidden" value="37">
+
+      <tr><td>ID *</td><td><input readonly name="id" type="text" value="37"></td></tr>
+      <tr><td>ID *</td><td><input disabled name="id" type="text" value="37"></td></tr>
+
+      <tr><td>Login *</td><td><input  autofocus required placeholder="Saisir login" value="Jordan" type="text" title="login"  size="25" minlength="8"  maxlength="25"/></td></tr>
       <tr><td>Password *</td><td><input required value="password" pattern="[A-z0-9!@#$&*?-]{4,8}" placeholder="Saisir password" type="password" title="4 a 8 caracteres (A1#)"/></td></tr>
       <tr><td>Mail</td><td><input placeholder="Saisir votre email"  type="email"/></td></tr>
-      <tr><td>Age</td><td><input placeholder="Saisir age" type="number"/></td></tr>
-      <tr><td>Salaire</td><td><input placeholder="Saisir salaire" type="number"/></td></tr>
+      <tr><td>Age</td><td><input placeholder="Saisir age" type="number" min="0" max="56" step="2"/></td></tr>
+      <tr><td>Salaire</td><td><input placeholder="Saisir salaire" step="0.01" type="number"/></td></tr>
+      <tr><td>Couleur fav</td><td><input  type="color"/></td></tr>
+      <tr><td>Note</td><td><input name="range" min="0" max="10" type="range"/></td></tr>
+
+
+
     </table>
   </fieldset>
 
@@ -50,10 +60,9 @@ Regex password entre 4 et 8 caracteres avec maj, min, chiffre, speciaux
     <legend>Suite</legend>
     <table>
 
-
       <tr><td>Site web</td><td><input placeholder="Saisir url" type="url"/></td></tr>
-      <tr><td>Naissance</td><td><input value="2023-01-01" type="date"/></td></tr>
-      <tr><td>Heure</td><td><input type="time"/></td></tr>
+      <tr><td>Naissance</td><td><input value="2023-01-01" min="2023-01-01" max="2023-01-31" type="date"/></td></tr>
+      <tr><td>Heure</td><td><input type="time" step="900" min="09:30" max="17:30"/></td></tr>
       <tr><td>Semaine</td><td><input type="week"/></td></tr>
       <tr><td>Tel</td><td><input placeholder="Saisir tel" type="tel"/></td></tr>
       <tr>
