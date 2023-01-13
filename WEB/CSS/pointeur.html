@@ -1,5 +1,110 @@
 
+<!--
+enfants direct => x > y
+descendants => x y
+suivantes => x + y
 
+-->
+<style>
+#content
+{
+  background-color:cyan;
+}
+
+#content div
+{
+    font-size:25px;
+    color:red;
+}
+
+#content > div
+{
+  border:solid green 2px;
+}
+
+#content>div>div
+{
+  text-align:center;
+}
+
+#content+div
+{
+  background-color:yellow;
+}
+#content+div+div
+{
+  background-color:red;
+}
+
+
+
+#exemple
+{
+  background-color: orange;
+}
+
+
+
+#exemple p:nth-of-type(2)
+{
+border:solid red 1px;
+}
+
+
+#exemple p:nth-of-type(odd)
+{
+color:#00ff25;
+}
+
+#exemple p:nth-of-type(even)
+{
+color:#005aff;
+}
+
+
+#exemple p:nth-of-type(3n)
+{
+font-size:35px;
+}
+
+
+
+#exemple2 p:nth-child(odd)
+{
+color:#00ff25;
+}
+
+
+#exemple2 p:nth-child(even)
+{
+color:#005aff;
+}
+
+#exemple2
+{
+  background-color:darksalmon;
+}
+
+
+#exemple p::first-line
+{
+  font-family : cursive;
+  font-size:28px;
+}
+
+#exemple p::first-letter
+{
+  font-family : fantasy;
+}
+
+#exemple p:nth-of-type(5)::before
+{
+  color:pink;
+  font-size:35px;
+  content:"Leeloo  ";
+}
+
+</style>
 
 
 <div>Avant</div>
@@ -19,7 +124,7 @@
 
 
 
-
+<br><br><br><br><br>
 
 <div id="exemple">
   <h1>Liste des parags</h1>
@@ -33,7 +138,7 @@
 </div>
 
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <div id="exemple2">
   <h1>Liste des parags 2 </h1>
