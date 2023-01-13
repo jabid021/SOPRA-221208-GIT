@@ -1,0 +1,14 @@
+body
+{
+  background-color:#F4EFE7;
+}
+
+#content
+{
+  margin:75px;
+}
+
+.formAjout
+{
+  display:none;
+}
