@@ -1,0 +1,103 @@
+<script charset="utf-8">
+
+  var reponse;
+  var prenom="Jordan"; // var en js => static java
+  let tmp;//=> let => variable temporaire (à utiliser dans un for par exemple)
+  var test = "Jordan";
+  test="12";
+
+  var zoom = ["Jordan","John","Toto","Jean-Jordan"];
+  var notes=[15,18,8,2,20,7];
+  var notes2 = new Array(10);
+  //zoom.length=100;
+  //  zoom[zoom.length]="test";
+
+  //.push ajoute l'element à la fin du tableau
+  zoom.push("Arthur");
+
+  //.unshift ajoute l'element au début du tableau et decale d'une case les autres
+  zoom.unshift("Audrey");
+
+  //.shift retire le 1er element
+  //zoom.shift();
+
+  //.pop retire le dernier element
+  //zoom.pop();
+
+  zoom.sort(triParLength);
+  zoom.reverse();
+
+
+  console.log(notes);
+  notes.sort(triNumerique);
+  console.log(notes);
+
+  //alert(zoom.join("*"));
+
+  console.log(zoom);
+  console.log(zoom.length);
+  for(let i=0;i<zoom.length;i++)
+  {
+    console.log(zoom[i]+" - "+(i+1));
+  }
+
+
+function triNumerique(x,y)
+{
+  return x-y;
+}
+
+
+
+function triParLength(x,y)
+{
+  return x.length-y.length;
+}
+
+
+  //test++;
+/*  console.log(test==12);
+  console.log(test===12);
+
+
+  if(prenom.toUpperCase()=="JORDAN")
+  {
+    console.log(prenom+"== Jordan");
+  }
+
+  switch(test)
+  {
+    case 12 : console.log(test+" = 12");break;
+    case 13 : console.log(test+" = 13");break;
+    default : console.log(test+" = default");break;
+  }
+
+  var isPair = (test%2==0)?true:false;
+  console.log(test+" est pair : "+isPair);
+
+  for(let i = 1; i<=10;i++)
+  {
+    console.log("Hello world "+i);
+  }
+
+  do
+  {
+    reponse=prompt("continuer ? y/n");
+  }while(reponse=="y");
+
+
+
+var age=29;
+age=anniversaire(age);
+console.log(age);
+
+anniversaire(); //marche quand meme.....
+
+
+function anniversaire(age)
+{
+  age++;
+  console.log("Joyeux anniversaire "+age+" ans");
+  return age;
+}*/
+</script>
