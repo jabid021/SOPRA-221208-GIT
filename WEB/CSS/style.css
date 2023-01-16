@@ -1,0 +1,67 @@
+@font-face { font-family: "maPolice";
+src: url("Grind_Demolished.ttf");
+}
+
+@media(max-width: 576px)
+{
+
+  #navPC
+  {
+    display:none;
+  }
+
+
+  #content
+  {
+    background-color:cyan;
+  }
+
+}
+
+@media(min-width:576px) and (max-width:992px)
+{
+  #navTel
+  {
+    display:none;
+  }
+
+  #content
+  {
+    background-color:orange;
+  }
+}
+
+@media(min-width: 992px)
+{
+
+  #navTel
+  {
+    display:none;
+  }
+
+  #content
+  {
+    background-color:lightgrey;
+    height : 75%;
+    overflow-y : scroll;
+  }
+
+  p
+  {
+    font-family: 'maPolice','Roboto Slab', serif;
+
+  }
+
+}
+
+#navPC
+{
+  text-align:center;
+}
+
+
+#titre
+{
+  //display:none;
+  visibility: hidden;
+}
