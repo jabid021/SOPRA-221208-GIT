@@ -1,0 +1,57 @@
+<p id="parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<input type="button" value="Reset" id="btnReset">
+<!--<p  onclick="demo()" id="parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+
+<script charset="utf-8">
+
+//Events souris : click, dblclick,mouseover,mouseout,mousedown,mouseup,mousemove
+
+parag.ondblclick=testEventSouris;
+//parag.onmouseover=function(){console.log("over");}
+//parag.onmouseout=function(){console.log("out");}
+//parag.onmousedown=function(){console.log("press click");};
+parag.onmouseup=testEventSouris;
+parag.onclick=testEventSouris;
+//parag.onmousemove=function(){console.log("deplacement");};
+btnReset.onclick=function(){parag.style.color="black";}
+
+
+function testEventSouris(event)
+{
+
+if(event.type=="click")
+{
+  if(event.button==0){console.log("click gauche");}
+  else if(event.button==2){console.log("click droit");}
+  else{console.log("click milieu");}
+
+  if(event.ctrlKey==true)
+  {
+    console.log("click avec CTRL");
+    parag.style.color="red";
+  }
+  else
+  {
+    console.log("click sans CTRL");
+    parag.style.color="green";
+  }
+}
+
+else if(event.type=="dblclick")
+{
+  console.log("dblClick");
+}
+
+
+
+}
+
+
+
+function demo()
+{
+  console.log("ca marche !");
+}
+
+</script>
