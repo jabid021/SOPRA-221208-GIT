@@ -1,0 +1,61 @@
+<h1 id="timer">00:00</h1>
+<input type="button" value="Start" id="btnStart">
+<input type="button" value="Pause" id="btnPause" disabled>
+<input type="button" value="Reset" id="btnReset">
+
+
+
+<script>
+
+  var min=0;
+  var sec=0;
+  var minAffiche;
+  var secAffiche;
+  var interval;
+
+btnStart.onclick=startTimer;
+btnPause.onclick=pauseTimer;
+btnReset.onclick=function()
+{
+  min=0;
+  sec=0;
+  minAffiche= (min<10) ? "0"+min : ""+min;
+  secAffiche= (sec<10) ? "0"+sec : ""+sec;
+  timer.innerHTML=minAffiche+":"+secAffiche;
+}
+
+function startTimer()
+{
+  interval= setInterval(chrono,1000);
+  btnStart.disabled=true;
+  btnPause.disabled=false;
+}
+
+function pauseTimer()
+{
+  clearInterval(interval);
+  btnStart.disabled=false;
+  btnPause.disabled=true;
+}
+
+function chrono()
+{
+  sec++;
+  if(sec>59)
+  {
+    sec=0;
+    min++;
+    if(min>59)
+    {
+      min=0;
+    }
+  }
+
+
+  minAffiche= (min<10) ? "0"+min : ""+min;
+  secAffiche= (sec<10) ? "0"+sec : ""+sec;
+  timer.innerHTML=minAffiche+":"+secAffiche;
+}
+
+
+</script>
