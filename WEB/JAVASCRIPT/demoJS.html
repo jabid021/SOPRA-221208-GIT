@@ -6,6 +6,51 @@
   var test = "Jordan";
   test="12";
 
+
+
+  var p1 = new Object();
+  p1.prenom="Jordan";
+  p1.nom = "Abid";
+  p1.age=29;
+  console.log(p1);
+
+  var p2 = {"prenom":"John","nom":"Doe","age":42};
+  var p3 = {"prenom":"Jane","nom":"Doe"};
+
+  console.log(p3.prenom);
+  console.log(p3["prenom"]);
+  var saisie = prompt("Quel attribut afficher ?");
+  alert(p3[saisie]);
+
+  var tabPersonne  = [p1,p2,p3];
+  var tabPersonne2 =
+  [
+  {"prenom":"Abid","nom":"Jordan","age":29},
+  {"prenom":"John","nom":"Doe","age":42},
+  {"prenom":"Jane","nom":"Doe"}
+  ]
+
+  console.log(tabPersonne[1].nom);
+  console.log(p2);
+
+  console.log("------------");
+  for(index in tabPersonne)
+  {
+    console.log(index+" - "+tabPersonne[index]);
+  }
+  console.log("------------");
+
+
+  console.log("------------");
+  for(p of tabPersonne)
+  {
+    console.log(p);
+    console.log(p.prenom);
+  }
+  console.log("------------");
+
+
+
   var zoom = ["Jordan","John","Toto","Jean-Jordan"];
   var notes=[15,18,8,2,20,7];
   var notes2 = new Array(10);
@@ -42,48 +87,48 @@
   }
 
 
-function triNumerique(x,y)
-{
-  return x-y;
-}
+  function triNumerique(x,y)
+  {
+    return x-y;
+  }
 
 
 
-function triParLength(x,y)
-{
-  return x.length-y.length;
-}
+  function triParLength(x,y)
+  {
+    return x.length-y.length;
+  }
 
 
   //test++;
-/*  console.log(test==12);
+  /*  console.log(test==12);
   console.log(test===12);
 
 
   if(prenom.toUpperCase()=="JORDAN")
   {
-    console.log(prenom+"== Jordan");
-  }
+  console.log(prenom+"== Jordan");
+}
 
-  switch(test)
-  {
-    case 12 : console.log(test+" = 12");break;
-    case 13 : console.log(test+" = 13");break;
-    default : console.log(test+" = default");break;
-  }
+switch(test)
+{
+case 12 : console.log(test+" = 12");break;
+case 13 : console.log(test+" = 13");break;
+default : console.log(test+" = default");break;
+}
 
-  var isPair = (test%2==0)?true:false;
-  console.log(test+" est pair : "+isPair);
+var isPair = (test%2==0)?true:false;
+console.log(test+" est pair : "+isPair);
 
-  for(let i = 1; i<=10;i++)
-  {
-    console.log("Hello world "+i);
-  }
+for(let i = 1; i<=10;i++)
+{
+console.log("Hello world "+i);
+}
 
-  do
-  {
-    reponse=prompt("continuer ? y/n");
-  }while(reponse=="y");
+do
+{
+reponse=prompt("continuer ? y/n");
+}while(reponse=="y");
 
 
 
@@ -96,8 +141,8 @@ anniversaire(); //marche quand meme.....
 
 function anniversaire(age)
 {
-  age++;
-  console.log("Joyeux anniversaire "+age+" ans");
-  return age;
+age++;
+console.log("Joyeux anniversaire "+age+" ans");
+return age;
 }*/
 </script>
