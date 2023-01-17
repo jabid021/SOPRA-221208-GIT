@@ -1,0 +1,31 @@
+<script charset="utf-8">
+
+var tabPays=
+[
+{"nom":"France","capitale":"Marseille"},
+{"nom":"Italie","capitale":"Rome"},
+{"nom":"Norvege","capitale":"Oslo"},
+{"nom":"Angleterre","capitale":"Londres"}
+];
+
+var score=0;
+
+
+for(p of tabPays)
+{
+  let saisie = prompt("Quelle est la capitale du pays suivant : "+p.nom+" ?");
+  if(saisie==p.capitale)
+  {
+    alert("Bonne réponse !");
+    score++;
+  }
+  else
+  {
+    alert("Mauvaise réponse");
+  }
+}
+alert("Fin de la partie, score : "+score+" / "+tabPays.length);
+console.log("Fin de la partie, score : "+score+" / "+tabPays.length);
+
+
+</script>

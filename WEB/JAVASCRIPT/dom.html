@@ -1,0 +1,106 @@
+<title>Le DOM</title>
+
+<h1 id="titrePage">DOM</h1>
+
+<div attribut="saValeur" id="baliseVide"></div>
+<h2 class="elementImportant">Titre à remplacer</h2>
+
+<p class="elementImportant">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2>Zog Zog</h2>
+
+
+<input type="text" id="login" name="login" placeholder="Saisir login" value="jabid">
+<input type="button" value="OK" id="btnOk">
+
+<script charset="utf-8">
+
+  //console.log(document);
+  /*console.log(document.title);
+  document.title="Nouveau TITRE";*/
+
+  pointeurTags();
+
+
+
+  function pointeurId()
+  {
+    var maBalise = document.getElementById("titrePage");
+    console.log(maBalise);
+    maBalise.style.color="red";
+    maBalise.style.backgroundColor = "cyan";
+    maBalise.style.fontSize="35px";
+
+    maBalise.style.setProperty("color","gray");
+    maBalise.style.setProperty("background-color","pink");
+
+    //let propAModifier = prompt("Saisir le nom de la prop");
+    //let valeur = prompt("Quelle valeur ?");
+    // NE MARCHE PAS  : maBalise.style.propAModifier=valeur;
+    //maBalise.style.setProperty(propAModifier,valeur);
+
+    console.log(maBalise.innerHTML);
+    maBalise.innerHTML="DOM (Document Object Model)";
+
+
+    document.getElementById("baliseVide").innerHTML+=maBalise.innerHTML+" <ul><li>item1</li></ul>";
+
+    //innerHTML permet d'injecter n'importe quel code html / innerText uniquement du text
+    maBalise.innerText="<b>Test</b>";
+
+    //document.getElementById("baliseVide").style.color="red";
+    //En JS, on peut pointer une balise directement par son id (x.style au lieu de document.getElementById("x"))
+    //Attention a ne pas avoir de variables / fonctions avec le meme nom
+    baliseVide.style.color="red";
+
+
+    //getAttribute => return la value correspondante
+    //setAttribute => modifier / ajoute l'attribut / la value
+    //removeAttribute => retire l'attribut et sa saValeur
+
+    console.log(baliseVide.getAttribute("attribut"));
+    baliseVide.setAttribute("attribut","nouvelleValue");
+    baliseVide.setAttribute("attribut2","value2");
+    baliseVide.removeAttribute("attribut");
+
+    btnOk.setAttribute("disabled","disabled");
+    login.setAttribute("disabled","disabled");
+    login.removeAttribute("disabled");
+    login.setAttribute("required","required");
+
+
+    login.disabled=true;
+    login.required=true;
+    login.disabled=false;
+    btnOk.disabled=false;
+
+
+
+    console.log(login.value);
+    login.value="JORDAN";
+  }
+
+
+  function pointeurClass()
+  {
+    var mesBalises = document.getElementsByClassName("elementImportant");
+    //mesBalises[0].style.color="red";
+    for(b of mesBalises)
+    {
+      b.style.color="red";
+    }
+  }
+
+  function pointeurTags()
+  {
+    var mesBalises = document.getElementsByTagName("h2");
+
+    for(b of mesBalises)
+    {
+      b.innerHTML="text replace";
+    }
+  }
+
+
+
+</script>
