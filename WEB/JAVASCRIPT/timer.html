@@ -1,0 +1,56 @@
+<h1 id="message">Ce paragraphe s'autodetruira dans 5 secondes...</h1>
+
+<input id="btnStop" type="button" value="STOP!">
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+<script>
+
+  btnStop.onclick=stopTimer;
+  var seconde=5;
+  var couleur="red";
+
+
+  var intervalSapin=setInterval(function()
+  {
+    couleur=(couleur=="red")?"green":"red";
+    sapin.style.color=couleur;
+  },800);
+
+  setTimeout(function()
+  {
+    clearInterval(intervalSapin);
+  },10000);
+
+
+  var monTimout = setTimeout(explosion,5000);
+  var monInterval = setInterval(decompte,1000);
+
+
+
+
+  function decompte()
+  {
+    seconde--;
+    message.innerHTML="Ce paragraphe s'autodetruira dans "+seconde+" secondes...";
+
+  }
+
+function explosion()
+{
+  message.innerHTML="BOUM....";
+  message.style.color="red";
+  clearInterval(monInterval);
+}
+
+  function stopTimer()
+  {
+    clearInterval(monInterval);
+    clearTimeout(monTimout);
+    message.style.color="green";
+  }
+
+
+
+</script>

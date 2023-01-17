@@ -1,3 +1,5 @@
+<script defer src="tp4.js" charset="utf-8"></script>
+
 <body style="background-color: lightyellow;">
 
   <p id="paragPrinci" class="secondaire">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -11,40 +13,4 @@
   <p class="secondaire">Parag secondaire</p>
   <p>Parag fin</p>
 
-
 </body>
-
-
-<script charset="utf-8">
-
-  var element = prompt("Quel type d'element ? id / class / tag ?");
-  var value= prompt("Quelle couleur pour l'element : "+element);
-
-
-  if(element=="id")
-  {
-    paragPrinci.style.setProperty("color",value);
-  }
-  else if(element=="class")
-  {
-    let balises=document.getElementsByClassName("secondaire");
-    for(b of balises)
-    {
-      //b.style.color=value;
-      b.style.setProperty("color",value);
-    }
-  }
-  else if(element=="tag")
-  {
-    let balises=document.getElementsByTagName("p");
-    for(b of balises)
-    {
-      b.style.setProperty("color",value);
-    }
-  }
-  else
-  {
-    alert("type d'element invalide");
-  }
-
-</script>
