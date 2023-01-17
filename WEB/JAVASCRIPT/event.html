@@ -1,57 +1,152 @@
+<style>
+
+#loginColor
+{
+  display:inline-block;
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background-color:red;
+  position:relative;
+
+}
+
+</style>
+<table border>
+  <tr>
+    <th>ID</th>
+    <th>Prenom</th>
+    <th>Action</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>Jordan</td>
+    <td><input onclick="affichePersonne(1,'Jordan')" type="button" value="Afficher"></td>
+  </tr>
+
+
+  <tr>
+    <td>2</td>
+    <td>John</td>
+    <td><input onclick="affichePersonne(2,'John')" type="button" value="Afficher"></td>
+  </tr>
+
+</table>
+
+
+
 <p id="parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+
+<input type="color" id="choixCouleur"><input type="button" value="Changer couleur" id="btnColor">
 <input type="button" value="Reset" id="btnReset">
+
+
+<br>
+<input type="text" id="login" >
+<input type="button" id="btnValidate" disabled value="Valider" >
+<div id="loginColor"></div>
+
 <!--<p  onclick="demo()" id="parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
 
 <script charset="utf-8">
 
-//Events souris : click, dblclick,mouseover,mouseout,mousedown,mouseup,mousemove
-
-parag.ondblclick=testEventSouris;
-//parag.onmouseover=function(){console.log("over");}
-//parag.onmouseout=function(){console.log("out");}
-//parag.onmousedown=function(){console.log("press click");};
-parag.onmouseup=testEventSouris;
-parag.onclick=testEventSouris;
-//parag.onmousemove=function(){console.log("deplacement");};
-btnReset.onclick=function(){parag.style.color="black";}
+  var x=0;
+  var y=0;
 
 
-function testEventSouris(event)
-{
+  //Events souris : click, dblclick,mouseover,mouseout,mousedown,mouseup,mousemove
+  //Events clavier : keypress, keydown, keyup
 
-if(event.type=="click")
-{
-  if(event.button==0){console.log("click gauche");}
-  else if(event.button==2){console.log("click droit");}
-  else{console.log("click milieu");}
-
-  if(event.ctrlKey==true)
+  document.body.onkeydown=function(event)
   {
-    console.log("click avec CTRL");
-    parag.style.color="red";
+    if(event.key="ArrowDown")
+    {
+      y++;
+      if(event.ctrlKey)
+      {
+        y+=3;
+      }
+      loginColor.style.top=y;
+    }
+
   }
-  else
+
+
+  login.onkeyup=function(event)
   {
-    console.log("click sans CTRL");
-    parag.style.color="green";
+    //console.log(event);
+    if(login.value=="")
+    {
+      btnValidate.disabled=true;
+      loginColor.style.backgroundColor="red";
+    }
+    else
+    {
+        btnValidate.disabled=false;
+        loginColor.style.backgroundColor="green";
+    }
+    console.log(login.value);
   }
-}
 
-else if(event.type=="dblclick")
+  parag.ondblclick=testEventSouris;
+  //parag.onmouseover=function(){console.log("over");}
+  //parag.onmouseout=function(){console.log("out");}
+  //parag.onmousedown=function(){console.log("press click");};
+  parag.onmouseup=testEventSouris;
+  parag.onclick=testEventSouris;
+  //parag.onmousemove=function(){console.log("deplacement");};
+  btnReset.onclick=function(){parag.style.color="black";}
+
+
+
+  choixCouleur.onchange=changeColor;
+  btnColor.onclick=changeColor;
+
+  function changeColor()
+  {
+    parag.style.color=choixCouleur.value;
+  }
+
+  function testEventSouris(event)
+  {
+
+    if(event.type=="click")
+    {
+      if(event.button==0){console.log("click gauche");}
+      else if(event.button==2){console.log("click droit");}
+      else{console.log("click milieu");}
+
+      if(event.ctrlKey==true)
+      {
+        console.log("click avec CTRL");
+        parag.style.color="red";
+      }
+      else
+      {
+        console.log("click sans CTRL");
+        parag.style.color="green";
+      }
+    }
+
+    else if(event.type=="dblclick")
+    {
+      console.log("dblClick");
+    }
+
+
+
+  }
+
+function affichePersonne(id,prenom)
 {
-  console.log("dblClick");
+  console.log("id : "+id+" prenom : "+prenom);
 }
 
-
-
-}
-
-
-
-function demo()
-{
-  console.log("ca marche !");
-}
+  function demo()
+  {
+    console.log("ca marche !");
+  }
 
 </script>
