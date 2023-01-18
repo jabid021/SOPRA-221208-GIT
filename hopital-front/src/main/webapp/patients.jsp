@@ -25,24 +25,25 @@ System.out.println(patients);
 		<th>ID</th>
 		<th>Nom</th>
 		<th>Prenom</th>
+		<th>Action</th>
 		</tr>
 	<%
 	
 		for(Patient p : patients) 
 	{
 		out.println("<tr>");
-		out.println("<th>"+p.getId()+"</th>");
-		out.println("<th>"+p.getNom()+"</th>");
-		out.println("<th>"+p.getPrenom()+"</th>");
-		out.println("</tr>	");
+		out.println("<td>"+p.getId()+"</td>");
+		out.println("<td>"+p.getNom()+"</td>");
+		out.println("<td>"+p.getPrenom()+"</td>");
+		out.println("<td><a href='fichePatient.jsp?id="+p.getId()+"'><input type='button' value='Modifier'></a></td>");
+		out.println("</tr>");
 	}
 	%>
-		
 		
 		</table>
 		
 		
-		<form action='demo' method='post'>
+		<form action='' method='post'>
 		
 		ID <input type='number' name='id'><br>
 		nom <input type='text' name='nom' placeholder='Saisir nom'><br>
