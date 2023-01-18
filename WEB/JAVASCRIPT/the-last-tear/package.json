@@ -1,0 +1,24 @@
+{
+  "name": "the-last-tear",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package": "rm -r build.zip dist/ ; yarn build ; cd dist; zip -q -r ../build.zip index.html ; cd ..; ls -l build.zip | awk '{print \"Final size\", $5, \"/ 13312, remaining \", 13312 - $5}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corpille/bertrand-le-goeland.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^3.0.7"
+  },
+  "devDependencies": {
+    "terser": "^5.14.2",
+    "vite-plugin-singlefile": "^0.11.1"
+  }
+}

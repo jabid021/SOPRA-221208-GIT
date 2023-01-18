@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Last Tear</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      window.$ = (...a) => document.querySelector(...a);
+      window.$$ = (...a) => document.createElement(...a);
+    </script>
+  </head>
+  <body>
+    <div id="home">
+      <h1>The Last Tear</h1>
+      <h3>a short story by Corentin Pillet</h3>
+      <menu> <button id="start-btn">Start</button> </menu>
+      <div class="commands">
+        <label>Commands</label>
+        <div class="guide">
+          <div class="arrows">
+            <label>Movements:</label>
+            <div class="key arrow-up">&lt;</div>
+            <div class="bottom-arrows">
+              <div class="key arrow-left">&lt;</div>
+              <div class="key arrow-down">&lt;</div>
+              <div class="key arrow-right">&lt;</div>
+            </div>
+          </div>
+          <div class="action">
+            <label>Action:</label>
+            <div class="key e">E</div>
+            <br />
+            <label>Jump:</label>
+            <div class="key space">Space</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fs">
+      <div class="fs-txt"></div>
+      <div id="continue">Press E to continue</div>
+    </div>
+    <div id="game">
+      <div id="letters">Ready ?</div>
+      <i id="play">Press enter</i>
+    </div>
+    <div id="canvas">
+      <div id="level"></div>
+      <div id="inv"></div>
+    </div>
+  </body>
+  <script type="module" src="/main.js"></script>
+</html>
