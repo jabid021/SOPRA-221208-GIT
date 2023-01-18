@@ -1,0 +1,124 @@
+<style>
+
+#timer,#game{display:none;}
+</style>
+
+
+<input id="playBtn" type="button" value="Play">
+<input id="pauseBtn" type="button" value="Pause" disabled>
+<h1 id="timer">00:00</h1>
+
+
+
+<div id="game">
+  <h1>Quelle est la capitale de : <span id="question"></span> </h1>
+  <input type="text" id="reponse">
+  <input type="button" id="validateBtn" value="Valider">
+  <div id="resultat"></div>
+</div>
+
+<div id="scoreQuizz"></div>
+
+
+
+
+<script>
+
+  var min = 0;
+  var sec = 0;
+  var minAffiche;
+  var secAffiche;
+  var compteur=0;
+  var monTimer;
+  var score=0;
+  var pays=
+[
+  {"pays":"Madagscar","capitale":"Antananarivo"},
+  {"pays":"Norvege","capitale":"Oslo"},
+  {"pays":"France","capitale":"Marseille"},
+  {"pays":"Slovenie","capitale":"Ljubljana"}
+]
+
+
+playBtn.onclick=start;
+pauseBtn.onclick=pause;
+validateBtn.onclick=verif;
+reponse.onkeypress=function(event)
+{
+  if(event.keyCode==13)
+  {
+    verif();
+  }
+}
+
+function jeu()
+{
+  question.innerHTML=pays[compteur].pays;
+}
+
+function verif()
+{
+  if(reponse.value==pays[compteur].capitale)
+  {
+    resultat.innerHTML="Bonne réponse <img width=40 src='img/content.png'>";
+    resultat.style.color="green";
+    score++;
+  }
+  else
+  {
+    resultat.innerHTML="Mauvaise réponse <img width=40 src='img/angry.png'>";
+    resultat.style.color="red";
+  }
+
+  setTimeout(function(){resultat.innerHTML="";},2500);
+  reponse.value="";
+  compteur++;
+
+  if(pays.length>compteur)
+  {
+    jeu();
+  }
+  else{
+    game.style.display="none";
+    pause();
+    playBtn.disabled=true;
+  }
+
+  scoreQuizz.innerHTML="Votre score est de : "+score+" / "+pays.length;
+}
+
+function start()
+{
+  monTimer=setInterval(chrono,1000);
+  timer.style.display="block";
+  playBtn.disabled=true;
+  pauseBtn.disabled=false;
+  game.style.display="block";
+  jeu();
+}
+
+function pause()
+{
+  clearInterval(monTimer);
+  playBtn.disabled=false;
+  pauseBtn.disabled=true;
+  game.style.display="none";
+}
+
+function chrono()
+{
+  sec++;
+  if(sec>59)
+  {
+    sec=0;
+    min++;
+    if(min>59){min=0;}
+  }
+  minAffiche=(min<10) ? "0"+min : min;
+  secAffiche=(sec<10) ? "0"+sec : sec;
+  timer.innerHTML=minAffiche+":"+secAffiche;
+}
+
+
+
+</script>

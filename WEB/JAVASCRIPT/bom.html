@@ -1,0 +1,33 @@
+<h1>BOM (Browser Object Model)</h1>
+<input type="button" value="action" id="btnAction">
+
+
+
+
+<noscript>
+  Merci d'activer JS !
+</noscript>
+
+<script>
+
+btnAction.onclick=function()
+{
+  console.log("largeur screen " +screen.width);
+  console.log("hauteur screen "+screen.height);
+  console.log(navigator.appName);
+
+
+history.back(3);
+history.go(1);
+console.log(history.length);
+
+//  location.reload();
+  //location.href="https://www.google.fr";
+  //var fenetre = window.open("https://www.ajc-formation.fr");
+  //setTimeout(function(){fenetre.close();},5000);
+}
+
+
+
+
+</script>
