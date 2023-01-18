@@ -1,0 +1,77 @@
+<style>
+
+  body
+  {
+    background-image : url("assets/img/water.png");
+    background-size:100% 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  #grass
+  {
+    display:none;
+    width:700px;
+    height:700px;
+    background-image : url("assets/img/Grass.png")
+  }
+
+  #pikachu
+  {
+    position:relative;
+    top:0;
+    left:-75;
+    display:inline-block;
+  }
+
+  #bouteille
+  {
+    position:relative;
+    top:150;
+    left:200;
+    display:inline-block;
+  }
+
+#imgbouteille
+{
+  height:40px;
+  width:20px;
+}
+
+#medicament{
+  position:relative;
+  top:450;
+  left:600;
+  display:inline-block;
+}
+
+#imgmedicament
+{
+  height:20px;
+  width:40px;
+}
+
+</style>
+
+
+<script defer src="pikachu.js" charset="utf-8"></script>
+
+<audio id="pokeSound" src="assets/audio/theme.mp3"></audio>
+
+<div id="formStart">
+  <input id="inputName" type="text" placeholder="pikachu">
+  <input id="btnStart" type="button" value="Start !" disabled>
+</div>
+
+<div id="grass">
+  <div id="bouteille">
+    <img id="imgbouteille" src="assets/img/bouteille.png">
+  </div>
+  <div id="medicament">
+    <img id="imgmedicament" src="assets/img/medicament.png">
+  </div>
+  <div id="pikachu">
+    <img id="imgPikachu" src="assets/img/pikachuDown.png">
+
+  </div>
+</div>
