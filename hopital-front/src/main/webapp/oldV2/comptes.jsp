@@ -48,7 +48,7 @@ List<Compte> comptes = Singleton.getInstance().getDaoCompte().findAll();
 		
 		Login <input type='text' name='login' placeholder='Saisir login'><br>
 		Password <input type='password' name='password' placeholder='Saisir password'><br>
-		<select>
+		<select name="type">
 		<option>Medecin</option>
 		<option>Secretaire</option>
 		</select>

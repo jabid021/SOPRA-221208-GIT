@@ -39,14 +39,14 @@ public class PatientController extends HttpServlet {
 				Patient p = Singleton.getInstance().getDaoPatient().findById(id);
 				request.setAttribute("patient", p);
 				
-				this.getServletContext().getRequestDispatcher("/fichePatient.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/WEB-INF/fichePatient.jsp").forward(request, response);
 			}
 		}
 		else 
 		{
 			List<Patient> patients = Singleton.getInstance().getDaoPatient().findAll();
 			request.setAttribute("patients", patients);
-			this.getServletContext().getRequestDispatcher("/patients.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/patients.jsp").forward(request, response);
 		}
 		
 		
