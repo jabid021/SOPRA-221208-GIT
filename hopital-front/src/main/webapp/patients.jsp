@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="model.Patient" %>
-<%@ page import="java.util.List" %>
-<%@ page import="context.Singleton" %>
 
 <html>
 <head>
@@ -14,12 +11,7 @@
 
 
 <h1> Liste des patients </h1>
-<%
 
-List<Patient> patients = Singleton.getInstance().getDaoPatient().findAll();
-System.out.println(patients);
-
-%>
 	<table border>
 		<tr>
 		<th>ID</th>
@@ -27,24 +19,22 @@ System.out.println(patients);
 		<th>Prenom</th>
 		<th>Action</th>
 		</tr>
-	<%
-	
-		for(Patient p : patients) 
-	{
-		out.println("<tr>");
-		out.println("<td>"+p.getId()+"</td>");
-		out.println("<td>"+p.getNom()+"</td>");
-		out.println("<td>"+p.getPrenom()+"</td>");
-		out.println("<td><a href='fichePatient.jsp?id="+p.getId()+"'><input type='button' value='Modifier'></a></td>");
-		out.println("</tr>");
-	}
-	%>
+
+		<tr>
+		<td>${patients[0].id}</td>
+		<td>${patients[0].nom}</td>
+		<td>${patients[0].prenom}</td>
+		<td>
+		<a href='patient?id=${patients[0].id}'><input type='button' value='Modifier'></a>
+		<a href='patient?id=${patients[0].id}&delete'><input type='button' value='Delete'></a>
+		</td>
+		</tr>
 		
 		</table>
 		
 		
-		<form action='' method='post'>
-		
+		<form action='patient' method='post'>
+		<input type="hidden" name="tache" value="insert"> 
 		ID <input type='number' name='id'><br>
 		nom <input type='text' name='nom' placeholder='Saisir nom'><br>
 		prenom <input type='text' name='prenom' placeholder='Saisir prenom'><br>

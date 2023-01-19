@@ -5,7 +5,14 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  
-  
- 
+  <servlet>
+    <description></description>
+    <display-name>PatientController</display-name>
+    <servlet-name>PatientController</servlet-name>
+    <servlet-class>controller.PatientController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PatientController</servlet-name>
+    <url-pattern>/PatientController</url-pattern>
+  </servlet-mapping>
 </web-app>
