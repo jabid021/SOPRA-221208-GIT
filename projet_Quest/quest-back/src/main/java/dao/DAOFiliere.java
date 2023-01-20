@@ -124,5 +124,32 @@ public class DAOFiliere implements IDAO<Filiere,Integer> {
 		}
 	}
 
+	
+	public List<Filiere> findAllByDateBetween(String date) {
+		Filiere filiere=null;
+		List<Filiere> filieres=new ArrayList();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(url+port+bdd,login,password);
+
+			PreparedStatement ps = conn.prepareStatement("SELECT * from filiere where ? between debut and fin");
+			ps.setString(1, date);
+
+			ResultSet rs =  ps.executeQuery();
+
+			while(rs.next()) 
+			{
+				filiere = new Filiere(rs.getInt("id"),rs.getString("libelle"),LocalDate.parse(rs.getString("debut")),LocalDate.parse(rs.getString("fin")));
+				filieres.add(filiere);
+			}
+
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filieres;
+	}
 
 }

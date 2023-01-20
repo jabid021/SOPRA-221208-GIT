@@ -3,20 +3,12 @@
   <display-name>quest-front</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>StagiaireController</display-name>
-    <servlet-name>StagiaireController</servlet-name>
-    <servlet-class>controller.StagiaireController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>StagiaireController</servlet-name>
-    <url-pattern>/StagiaireController</url-pattern>
-  </servlet-mapping>
+
+<jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <include-prelude>/WEB-INF/libs.jsp</include-prelude>
+    </jsp-property-group>
+  </jsp-config>
 </web-app>

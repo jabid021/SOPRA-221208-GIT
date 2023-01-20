@@ -7,7 +7,7 @@ public interface IDAO<T,K> {
 
 	String url = "jdbc:mysql://localhost:";
 	String port="3306";
-	String bdd ="/quest_jsp";
+	String bdd ="/quest_jsp?characterEncoding=UTF-8";
 	String login="root";
 	String password="";
 

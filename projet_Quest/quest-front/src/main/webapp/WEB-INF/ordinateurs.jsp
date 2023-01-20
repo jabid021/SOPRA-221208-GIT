@@ -1,5 +1,17 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+    
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gestion Ordinateurs</title>
+</head>
+<body>
+
 
 
 <div id="content">
@@ -18,32 +30,23 @@
            </tr>
        </thead>
        <tbody>
-         <tr>
-           <td>1</td>
-           <td>Asus</td>
-           <td>8Go</td>
-           <td>1-Jordan Abid</td>
+       <c:forEach items="${ordinateurs}" var="ordinateur">
+       
+       <tr>
+           <td>${ordinateur.id}</td>
+           <td>${ordinateur.marque}</td>
+           <td>${ordinateur.ram}Go</td>
+           <td>${ordinateur.stagiaire.id}-${ordinateur.stagiaire.prenom} ${ordinateur.stagiaire.nom}</td>
            <td>
-             <a href="updateOrdinateur.html?id=1"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-             <input type="button" class ="btn btn-danger" value="Supprimer">
+             <a href="ordinateur?id=${ordinateur.id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
+             <a href="ordinateur?id=${ordinateur.id}&delete"><input type="button" class ="btn btn-danger" value="Supprimer"></a>
            </td>
          </tr>
-
-         <tr>
-           <td>1</td>
-           <td>Dell</td>
-           <td>16Go</td>
-           <td>2-John Doe</td>
-           <td>
-             <a href="updateOrdinateur.html?id=1"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-             <input type="button" class ="btn btn-danger" value="Supprimer">
-           </td>
-         </tr>
+       
+       </c:forEach>
+      
        </tbody>
      </table>
-
-
-
 
 
      <div id="addFormOrdi" class="formAjout">
@@ -53,8 +56,11 @@
             RAM :<input name="ram" type="number" placeholder="Saisir votre RAM"><br>
             Stagiaire
               <select name="stagiaire">
-                  <option value="1" >1 - Jordan Abid</option>
-                  <option value="2" >2 - John Doe</option>
+              <c:forEach items="${stagiaires}" var="stagiaire">
+              <option value="${stagiaire.id}" >${stagiaire.id} - ${stagiaire.prenom} ${stagiaire.nom}</option>
+              
+              </c:forEach>
+
               </select><br>
 
               <input class ="btn btn-success" type="submit" value="Ajouter">
