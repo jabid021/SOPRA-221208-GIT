@@ -101,6 +101,8 @@ $.ajax("filiere", {
 
 cancelBtn.onclick=function()
 {
+	//location.reload();
+	
 	$.ajax("filiere", {
 		type: "GET",
 		data: {
