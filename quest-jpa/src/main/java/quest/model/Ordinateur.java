@@ -1,24 +1,28 @@
 package quest.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="computer")
 public class Ordinateur {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name="brand", length = 100)
 	private String marque;
 	private int ram;
+	@Transient
 	private Stagiaire stagiaire;
-	
-	
-	public Ordinateur(Integer id, String marque, int ram, Stagiaire stagiaire) {
-		this.id = id;
-		this.marque = marque;
-		this.ram = ram;
-		this.stagiaire = stagiaire;
-	}
-	
-	public Ordinateur(String marque, int ram, Stagiaire stagiaire) {
-		this.marque = marque;
-		this.ram = ram;
-		this.stagiaire = stagiaire;
+
+	public Ordinateur() {
+		super();
 	}
 
 	public Integer getId() {
@@ -53,11 +57,4 @@ public class Ordinateur {
 		this.stagiaire = stagiaire;
 	}
 
-	@Override
-	public String toString() {
-		return "Ordinateur [id=" + id + ", marque=" + marque + ", ram=" + ram + ", stagiaire=" + stagiaire + "]";
-	}
-	
-	
-	
 }

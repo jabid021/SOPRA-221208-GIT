@@ -1,58 +1,36 @@
 package quest.model;
 
-public class Stagiaire {
+import java.time.LocalDate;
 
-	private Integer id;
-	private String nom;
-	private String prenom;
-	private String email;
+import javax.persistence.Transient;
+
+public class Stagiaire extends Personne {
+
+	private LocalDate dtNaissance;
+	private NiveauEtude niveauEtude;
+	@Transient
 	private Filiere filiere;
-		
-	public Stagiaire(Integer id, String nom, String prenom, String email, Filiere filiere) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.filiere = filiere;
+	@Transient
+	private Ordinateur ordinateur;
+
+	public Stagiaire() {
+		super();
 	}
 
-	public Stagiaire(String nom, String prenom, String email, Filiere filiere) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.filiere = filiere;
+	public LocalDate getDtNaissance() {
+		return dtNaissance;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setDtNaissance(LocalDate dtNaissance) {
+		this.dtNaissance = dtNaissance;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public NiveauEtude getNiveauEtude() {
+		return niveauEtude;
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setNiveauEtude(NiveauEtude niveauEtude) {
+		this.niveauEtude = niveauEtude;
 	}
 
 	public Filiere getFiliere() {
@@ -63,11 +41,12 @@ public class Stagiaire {
 		this.filiere = filiere;
 	}
 
-	@Override
-	public String toString() {
-		return "Stagiaire [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", filiere="
-				+ filiere + "]";
+	public Ordinateur getOrdinateur() {
+		return ordinateur;
 	}
-	
-	
+
+	public void setOrdinateur(Ordinateur ordinateur) {
+		this.ordinateur = ordinateur;
+	}
+
 }

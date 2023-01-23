@@ -1,6 +1,10 @@
 package quest.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Transient;
 
 public class Filiere {
 
@@ -8,19 +12,15 @@ public class Filiere {
 	private String libelle;
 	private LocalDate debut;
 	private LocalDate fin;
-	
-	
-	public Filiere(Integer id, String libelle, LocalDate debut, LocalDate fin) {
-		this.id = id;
-		this.libelle = libelle;
-		this.debut = debut;
-		this.fin = fin;
-	}
-	
-	public Filiere(String libelle, LocalDate debut, LocalDate fin) {
-		this.libelle = libelle;
-		this.debut = debut;
-		this.fin = fin;
+	@Transient
+	private List<Stagiaire> stagiaires = new ArrayList<>();
+	@Transient
+	private Formateur referent;
+	@Transient
+	private List<Matiere> matieres = new ArrayList<>();
+
+	public Filiere() {
+		super();
 	}
 
 	public Integer getId() {
@@ -55,12 +55,30 @@ public class Filiere {
 		this.fin = fin;
 	}
 
-	@Override
-	public String toString() {
-		return "Filiere [id=" + id + ", libelle=" + libelle + ", debut=" + debut + ", fin=" + fin + "]";
+	public List<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(List<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
+	public Formateur getReferent() {
+		return referent;
+	}
+
+	public void setReferent(Formateur referent) {
+		this.referent = referent;
+	}
+
+	public List<Matiere> getMatieres() {
+		return matieres;
+	}
+
+	public void setMatieres(List<Matiere> matieres) {
+		this.matieres = matieres;
 	}
 	
 	
-	
-	
+
 }
