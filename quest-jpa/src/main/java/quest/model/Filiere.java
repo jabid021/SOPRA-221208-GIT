@@ -4,13 +4,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@Table(name = "cursus")
 public class Filiere {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "label", length = 255)
 	private String libelle;
+	@Column(name = "start")
 	private LocalDate debut;
+	@Column(name = "end")
 	private LocalDate fin;
 	@Transient
 	private List<Stagiaire> stagiaires = new ArrayList<>();
@@ -78,7 +91,5 @@ public class Filiere {
 	public void setMatieres(List<Matiere> matieres) {
 		this.matieres = matieres;
 	}
-	
-	
 
 }

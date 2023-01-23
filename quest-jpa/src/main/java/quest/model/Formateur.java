@@ -1,6 +1,13 @@
 package quest.model;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("formateur")
 public class Formateur extends Personne {
+	@Column(name = "extern")
 	private boolean externe;
 	private int experience;
 
