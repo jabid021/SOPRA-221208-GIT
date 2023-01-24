@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="computer")
@@ -18,7 +18,7 @@ public class Ordinateur {
 	@Column(name="brand", length = 100)
 	private String marque;
 	private int ram;
-	@Transient
+	@OneToOne(mappedBy = "ordinateur")
 	private Stagiaire stagiaire;
 
 	public Ordinateur() {

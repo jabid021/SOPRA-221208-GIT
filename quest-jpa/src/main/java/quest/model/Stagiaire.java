@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -20,7 +22,8 @@ public class Stagiaire extends Personne {
 	private NiveauEtude niveauEtude;
 	@Transient
 	private Filiere filiere;
-	@Transient
+	@OneToOne
+	@JoinColumn(name = "computer_id")
 	private Ordinateur ordinateur;
 
 	public Stagiaire() {
