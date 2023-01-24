@@ -14,6 +14,16 @@ public class Formateur extends Personne {
 	public Formateur() {
 		super();
 	}
+	
+	
+
+	public Formateur(Civilite civilite, String nom, String prenom, String email, boolean externe, int experience) {
+		super(civilite, nom, prenom, email);
+		this.externe = externe;
+		this.experience = experience;
+	}
+
+
 
 	public boolean isExterne() {
 		return externe;

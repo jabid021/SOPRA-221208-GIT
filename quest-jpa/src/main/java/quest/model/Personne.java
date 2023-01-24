@@ -39,6 +39,14 @@ public abstract class Personne {
 		super();
 	}
 
+	public Personne(Civilite civilite, String nom, String prenom, String email) {
+		super();
+		this.civilite = civilite;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
+
 	public Integer getId() {
 		return id;
 	}

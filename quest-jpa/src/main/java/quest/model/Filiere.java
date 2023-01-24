@@ -55,6 +55,13 @@ public class Filiere {
 		super();
 	}
 
+	public Filiere(String libelle, LocalDate debut, LocalDate fin) {
+		super();
+		this.libelle = libelle;
+		this.debut = debut;
+		this.fin = fin;
+	}
+
 	public Integer getId() {
 		return id;
 	}

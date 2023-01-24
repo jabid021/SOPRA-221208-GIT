@@ -30,6 +30,12 @@ public class Matiere {
 		super();
 	}
 
+	public Matiere(String libelle, int quest) {
+		super();
+		this.libelle = libelle;
+		this.quest = quest;
+	}
+
 	public Integer getId() {
 		return id;
 	}

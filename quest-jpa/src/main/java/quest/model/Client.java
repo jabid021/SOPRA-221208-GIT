@@ -22,6 +22,11 @@ public class Client {
 	public Client() {
 		super();
 	}
+	
+	public Client(String nom, TypeClient type) {
+		super();
+		this.id = new ClientId(nom, type);
+	}
 
 	public ClientId getId() {
 		return id;

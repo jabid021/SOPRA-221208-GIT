@@ -28,6 +28,14 @@ public class Salle {
 		super();
 	}
 
+	public Salle(String nom, int etage, int capacite, boolean videoProjecteur) {
+		super();
+		this.nom = nom;
+		this.etage = etage;
+		this.capacite = capacite;
+		this.videoProjecteur = videoProjecteur;
+	}
+
 	public String getNom() {
 		return nom;
 	}

@@ -32,6 +32,12 @@ public class Stagiaire extends Personne {
 		super();
 	}
 
+	public Stagiaire(Civilite civilite, String nom, String prenom, String email, LocalDate dtNaissance, NiveauEtude niveauEtude) {
+		super(civilite, nom, prenom, email);
+		this.dtNaissance = dtNaissance;
+		this.niveauEtude = niveauEtude;
+	}
+
 	public LocalDate getDtNaissance() {
 		return dtNaissance;
 	}
