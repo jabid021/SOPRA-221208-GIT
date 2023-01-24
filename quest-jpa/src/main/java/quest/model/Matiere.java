@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "subject")
@@ -18,9 +19,11 @@ public class Matiere {
 	@Column(name = "label", length = 100)
 	private String libelle;
 	private int quest;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "cursus_id")
 	private Filiere filiere;
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "trainer_id")
 	private Formateur formateur;
 
 	public Matiere() {

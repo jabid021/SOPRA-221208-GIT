@@ -9,8 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "cursus")
@@ -25,12 +32,24 @@ public class Filiere {
 	private LocalDate debut;
 	@Column(name = "end")
 	private LocalDate fin;
-	@Transient
+	@ManyToMany
+	@JoinTable(name = "cursus_trainee", uniqueConstraints = @UniqueConstraint(columnNames = { "cursus_id",
+			"trainee_id" }), joinColumns = @JoinColumn(name = "cursus_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
 	private List<Stagiaire> stagiaires = new ArrayList<>();
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "referent_id")
 	private Formateur referent;
-	@Transient
+	@OneToMany(mappedBy = "filiere")
 	private List<Matiere> matieres = new ArrayList<>();
+	@OneToOne
+	@JoinColumns({ @JoinColumn(name = "classroom_name", referencedColumnName = "name"),
+			@JoinColumn(name = "classroom_floor", referencedColumnName = "floor") })
+	private Salle salle;
+
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "customer_name", referencedColumnName = "name"),
+			@JoinColumn(name = "customer_type", referencedColumnName = "type") })
+	private Client client;
 
 	public Filiere() {
 		super();
@@ -90,6 +109,14 @@ public class Filiere {
 
 	public void setMatieres(List<Matiere> matieres) {
 		this.matieres = matieres;
+	}
+
+	public Salle getSalle() {
+		return salle;
+	}
+
+	public void setSalle(Salle salle) {
+		this.salle = salle;
 	}
 
 }

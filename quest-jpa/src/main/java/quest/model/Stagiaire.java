@@ -1,6 +1,8 @@
 package quest.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -8,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("stagiaire")
@@ -20,8 +22,8 @@ public class Stagiaire extends Personne {
 	@Column(name = "grade", length = 6)
 	@Enumerated(EnumType.STRING)
 	private NiveauEtude niveauEtude;
-	@Transient
-	private Filiere filiere;
+	@ManyToMany(mappedBy = "stagiaires")
+	private List<Filiere> filieres = new ArrayList<>();
 	@OneToOne
 	@JoinColumn(name = "computer_id")
 	private Ordinateur ordinateur;
@@ -46,12 +48,12 @@ public class Stagiaire extends Personne {
 		this.niveauEtude = niveauEtude;
 	}
 
-	public Filiere getFiliere() {
-		return filiere;
+	public List<Filiere> getFilieres() {
+		return filieres;
 	}
 
-	public void setFiliere(Filiere filiere) {
-		this.filiere = filiere;
+	public void setFilieres(List<Filiere> filieres) {
+		this.filieres = filieres;
 	}
 
 	public Ordinateur getOrdinateur() {

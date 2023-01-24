@@ -1,9 +1,17 @@
 package quest.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Adresse {
+	@Column(name="street", length = 255)
 	private String rue;
+	@Column(length = 255)
 	private String complement;
+	@Column(name="zipcode", length = 10)
 	private String codePostal;
+	@Column(name="city", length = 100)
 	private String ville;
 
 	public Adresse() {
