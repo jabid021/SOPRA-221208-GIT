@@ -9,13 +9,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="computer")
+@Table(name = "computer")
 public class Ordinateur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name="brand", length = 100)
+	@Column(name = "brand", length = 100)
 	private String marque;
 	private int ram;
 	@OneToOne(mappedBy = "ordinateur")
@@ -23,6 +23,12 @@ public class Ordinateur {
 
 	public Ordinateur() {
 		super();
+	}
+
+	public Ordinateur(String marque, int ram) {
+		super();
+		this.marque = marque;
+		this.ram = ram;
 	}
 
 	public Integer getId() {
