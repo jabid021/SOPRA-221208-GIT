@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import quest.context.Application;
 import quest.model.Adresse;
 import quest.model.Civilite;
 import quest.model.Client;
@@ -22,10 +23,12 @@ import quest.model.TypeClient;
 public class PopulateData {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("quest");
+		EntityManagerFactory emf = Application.getInstance().getEmf();
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
+		
+		Integer idFiliere = null;
 
 		try {
 			em = emf.createEntityManager();
@@ -54,6 +57,7 @@ public class PopulateData {
 			java221208.setSalle(saphirAJC);
 			java221208.setReferent(jordan);
 			em.persist(java221208);
+			idFiliere = java221208.getId();
 
 			Matiere algo = new Matiere("ALGO EN JAVA", 1717);
 			algo.setFiliere(java221208);
@@ -103,6 +107,35 @@ public class PopulateData {
 				em.close();
 			}
 		}
+
+//		Filiere testFiliere = null;
+//		
+//		try {
+//			em = emf.createEntityManager();
+//			tx = em.getTransaction();
+//			tx.begin();
+//
+//			testFiliere = em.find(Filiere.class, idFiliere);
+//			
+//			System.out.println(testFiliere.getClient().getId().getNom());
+////			System.out.println(testFiliere.getSalle().getNom());
+//			System.out.println(testFiliere.getReferent().getNom());
+//			
+//			tx.commit();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			if (tx != null && tx.isActive()) {
+//				tx.rollback();
+//			}
+//		} finally {
+//			if (em != null) {
+//				em.close();
+//			}
+//		}
+		
+		
+		
+		
 
 		emf.close();
 

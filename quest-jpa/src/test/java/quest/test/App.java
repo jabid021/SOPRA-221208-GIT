@@ -5,12 +5,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import quest.context.Application;
 import quest.model.Ordinateur;
 
 public class App {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("quest");
+		EntityManagerFactory emf = Application.getInstance().getEmf();
 
 		EntityManager em = emf.createEntityManager(); // PersistenceContext Implicite
 		EntityTransaction tx = em.getTransaction();
