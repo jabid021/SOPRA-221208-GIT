@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Embeddable
 public class ClientId implements Serializable {
@@ -12,6 +14,7 @@ public class ClientId implements Serializable {
 	@Column(name="name", length = 100)
 	private String nom;
 	@Column(length = 10)
+	@Enumerated(EnumType.STRING)
 	private TypeClient type;
 
 	public ClientId() {
