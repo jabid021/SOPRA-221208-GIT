@@ -95,13 +95,25 @@ public class TestWithRepo {
 
 		java221208 = filiereRepo.save(java221208); // appeler le merge explicitement pour synchroniser
 
-		
 		List<Stagiaire> stagiaires = personneRepo.findAllStagiaire();
-		
-		for(Stagiaire stagiaire : stagiaires) {
+
+		for (Stagiaire stagiaire : stagiaires) {
 			System.out.println(stagiaire.getPrenom());
 		}
+
+		List<Formateur> formateurs = personneRepo.findAllFormateur();
+
+		for (Formateur formateur : formateurs) {
+			System.out.println(formateur.getPrenom());
+		}
 		
+		List<Filiere> filieres = filiereRepo.findAllByLibelle("JAVA / SPRING / ANGULAR");
+		
+		System.out.println(filieres.size());
+		
+		filieres = filiereRepo.findAllByNomClient("SOPRA STERIA");
+		
+		System.out.println(filieres.size());
 	}
 
 }

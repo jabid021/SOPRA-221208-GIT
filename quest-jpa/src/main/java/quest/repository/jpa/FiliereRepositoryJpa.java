@@ -156,14 +156,82 @@ public class FiliereRepositoryJpa implements IFiliereRepository {
 
 	@Override
 	public List<Filiere> findAllByLibelle(String libelle) {
+		List<Filiere> filieres = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Filiere> query = em.createQuery("select f from Filiere f where f.libelle = :libelle", Filiere.class);
+
+			query.setParameter("libelle", libelle);
+			
+			filieres = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return filieres;
+	}
+
+	@Override
+	public List<Filiere> findAllByNomClient(String client) {
+		List<Filiere> filieres = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Filiere> query = em.createQuery("select f from Filiere f where f.client.id.nom = ?1", Filiere.class);
+//			TypedQuery<Filiere> query = em.createQuery("select f from Filiere f join f.client c where c.id.nom = ?1", Filiere.class);
+//			TypedQuery<Filiere> query = em.createQuery("select f from Client c join c.filieres f where c.id.nom = ?1", Filiere.class);
+
+			query.setParameter(1, client);
+			
+			filieres = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return filieres;
+	}
+
+	@Override
+	public List<Filiere> findAllBySalleVille(String ville) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Filiere> findAllByNomClient(String client) {
+	public int countByReferentNom(String nom) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 }
