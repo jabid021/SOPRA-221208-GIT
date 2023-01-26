@@ -231,7 +231,7 @@ public class PersonneRepositoryJpa implements IPersonneRepository {
 			tx = em.getTransaction();
 			tx.begin();
 
-			TypedQuery<Object[]> query = em.createQuery("select s, s.ordinateur from Stagiaire s where s.id = ?1", Object[].class);
+			TypedQuery<Object[]> query = em.createQuery("select s, o from Stagiaire s left join s.ordinateur o where s.id = ?1", Object[].class);
 
 			query.setParameter(1, id);
 			
@@ -349,6 +349,37 @@ public class PersonneRepositoryJpa implements IPersonneRepository {
 		}
 
 		return stagiaires;
+	}
+
+	@Override
+	public List<Object[]> findAllStagiaireAndOrdinateur() {
+		List<Object[]> result = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Object[]> query = em.createQuery("select s, o from Stagiaire s left join s.ordinateur o", Object[].class);
+
+			result = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return result;
 	}
 
 }

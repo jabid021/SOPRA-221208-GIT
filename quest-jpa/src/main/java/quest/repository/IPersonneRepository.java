@@ -11,6 +11,8 @@ public interface IPersonneRepository extends IRepository<Personne, Integer>{
 	List<Formateur> findAllFormateur();
 	List<Stagiaire> findAllStagiaire();
 	
+	List<Object[]> findAllStagiaireAndOrdinateur();
+	
 	Object[] findStagiaireAndOrdinateurById(Integer id);
 	
 	Stagiaire findStagiaireById(Integer id);

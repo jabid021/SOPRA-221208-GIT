@@ -81,8 +81,13 @@ public class TestWithRepo {
 		Stagiaire audrey = new Stagiaire(Civilite.MME, "PENAZZI", "Audrey", "audrey@gmail.com",
 				LocalDate.parse("1998-01-27"), NiveauEtude.BAC_5);
 		audrey.setAdresse(new Adresse("1 rue de Bordeaux", "", "31200", "Toulouse"));
-		audrey.setOrdinateur(ordiAsus);
+//		audrey.setOrdinateur(ordiAsus);
 		audrey = (Stagiaire) personneRepo.save(audrey);
+
+		Stagiaire nicolas = new Stagiaire(Civilite.M, "JOSEPH", "Nicolas", "nicolas@gmail.com",
+				LocalDate.parse("1998-02-10"), NiveauEtude.BAC_5);
+		nicolas.setAdresse(new Adresse("1 rue de Toulouse", "", "33000", "Bordeaux"));
+		nicolas = (Stagiaire) personneRepo.save(nicolas);
 
 		Stagiaire aurelien = new Stagiaire(Civilite.M, "BULME", "Aurélien", "aurelien@gmail.com",
 				LocalDate.parse("1996-07-17"), NiveauEtude.BAC_5);
@@ -125,7 +130,10 @@ public class TestWithRepo {
 		Ordinateur ordinateur = (Ordinateur) row[1];
 
 		System.out.println("stagiaire=" + stagiaire.getNom());
-		System.out.println("ordinateur=" + ordinateur.getMarque());
+
+		if (ordinateur != null) {
+			System.out.println("ordinateur=" + ordinateur.getMarque());
+		}
 
 		Stagiaire stagiaireAudrey = personneRepo.findStagiaireByIdWithOrdinateur(audrey.getId());
 		System.out.println("stagiaireAudrey=" + stagiaireAudrey.getNom());
@@ -164,11 +172,23 @@ public class TestWithRepo {
 		for (Matiere matiere : filiereWithStagiairesAndMatieres.getMatieres()) {
 			System.out.println("matiere=" + matiere.getLibelle());
 		}
-		
-		
-		
+
 		for (Stagiaire stagiaireFil : personneRepo.findAllStagiaireByFiliere(filiereWithStagiairesAndMatieres)) {
 			System.out.println("stagiaire=" + stagiaireFil.getNom());
+		}
+
+		System.out.println("########################");
+
+		List<Object[]> rowsStagOrdi = personneRepo.findAllStagiaireAndOrdinateur();
+
+		for (Object[] rowStagOrdi : rowsStagOrdi) {
+			Stagiaire stagOrdiStagiaire = (Stagiaire) rowStagOrdi[0];
+			Ordinateur stagOrdiOrdinateur = (Ordinateur) rowStagOrdi[1];
+
+			System.out.println("stagiaire=" + stagOrdiStagiaire.getNom());
+			if (stagOrdiOrdinateur != null) {
+				System.out.println("ordinateur=" + stagOrdiOrdinateur.getMarque());
+			}
 		}
 	}
 
