@@ -106,18 +106,56 @@ public class TestWithRepo {
 		for (Formateur formateur : formateurs) {
 			System.out.println(formateur.getPrenom());
 		}
-		
+
 		List<Filiere> filieres = filiereRepo.findAllByLibelle("JAVA / SPRING / ANGULAR");
-		
+
 		System.out.println(filieres.size());
-		
+
 		filieres = filiereRepo.findAllByNomClient("SOPRA STERIA");
-		
+
 		System.out.println(filieres.size());
+
+		int size = filiereRepo.countByReferentNom("ABID");
+
+		System.out.println("count=" + size);
+
+		Object[] row = personneRepo.findStagiaireAndOrdinateurById(audrey.getId());
+
+		Stagiaire stagiaire = (Stagiaire) row[0];
+		Ordinateur ordinateur = (Ordinateur) row[1];
+
+		System.out.println("stagiaire=" + stagiaire.getNom());
+		System.out.println("ordinateur=" + ordinateur.getMarque());
 		
-		int size =  filiereRepo.countByReferentNom("ABID");
+		Stagiaire stagiaireAudrey = personneRepo.findStagiaireByIdWithOrdinateur(audrey.getId());
+		System.out.println("stagiaireAudrey=" + stagiaireAudrey.getNom());
+		System.out.println("ordinateurAudrey=" + stagiaireAudrey.getOrdinateur().getMarque());
 		
-		System.out.println("count=" +size);
+		Stagiaire stagiaireAurelien = personneRepo.findStagiaireById(aurelien.getId());
+		System.out.println("stagiaireAurelien=" + stagiaireAurelien.getNom());
+		Ordinateur ordinateurAurelien = ordinateurRepo.findByStagiaireId(aurelien.getId());
+		System.out.println("ordinateurAurelien=" + ordinateurAurelien.getMarque());
+		
+		List<Object[]> filiereRows = filiereRepo.findAllFiliereAndMatiere();
+		
+		for(Object[] filiereRow : filiereRows) {
+			Filiere filiere = (Filiere) filiereRow[0];
+			Matiere matiere = (Matiere) filiereRow[1];
+			
+			System.out.println("filiere="+filiere.getLibelle());
+			System.out.println("matiere="+matiere.getLibelle());
+		}
+		
+		List<Filiere> filieresWithMatieres = filiereRepo.findAllWithMatieres();
+		
+		for(Filiere filiereWithMatieres : filieresWithMatieres) {
+			
+			System.out.println("filieresWithMatieres="+filiereWithMatieres.getLibelle());
+			
+			for(Matiere matiere : filiereWithMatieres.getMatieres()) {
+				System.out.println("matiere="+matiere.getLibelle());
+			}
+		}
 	}
 
 }

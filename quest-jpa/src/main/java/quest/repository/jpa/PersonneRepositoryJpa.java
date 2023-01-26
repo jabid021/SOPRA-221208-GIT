@@ -218,4 +218,103 @@ public class PersonneRepositoryJpa implements IPersonneRepository {
 		return stagiaires;
 	}
 
+	@Override
+	public Object[] findStagiaireAndOrdinateurById(Integer id) {
+		Object[] result = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Object[]> query = em.createQuery("select s, s.ordinateur from Stagiaire s where s.id = ?1", Object[].class);
+
+			query.setParameter(1, id);
+			
+			result = query.getSingleResult();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	public Stagiaire findStagiaireById(Integer id) {
+		Stagiaire stagiaire = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Stagiaire> query = em.createQuery("select s from Stagiaire s where s.id = :id", Stagiaire.class);
+
+			query.setParameter("id", id);
+			
+			stagiaire = query.getSingleResult();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return stagiaire;
+	}
+
+	@Override
+	public Stagiaire findStagiaireByIdWithOrdinateur(Integer id) {
+		Stagiaire stagiaire = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Stagiaire> query = em.createQuery("select distinct s from Stagiaire s join fetch s.ordinateur where s.id = :id", Stagiaire.class);
+
+			query.setParameter("id", id);
+			
+			stagiaire = query.getSingleResult();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return stagiaire;
+	}
+
 }

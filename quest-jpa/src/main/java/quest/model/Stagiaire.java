@@ -9,6 +9,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
@@ -24,7 +25,7 @@ public class Stagiaire extends Personne {
 	private NiveauEtude niveauEtude;
 	@ManyToMany(mappedBy = "stagiaires")
 	private List<Filiere> filieres = new ArrayList<>();
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "computer_id")
 	private Ordinateur ordinateur;
 

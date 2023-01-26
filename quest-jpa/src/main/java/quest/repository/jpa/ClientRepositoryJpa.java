@@ -167,4 +167,10 @@ public class ClientRepositoryJpa implements IClientRepository {
 		}
 	}
 
+	@Override
+	public List<Client> findAllWithFilieres() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

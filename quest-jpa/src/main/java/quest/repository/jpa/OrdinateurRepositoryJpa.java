@@ -195,4 +195,36 @@ public class OrdinateurRepositoryJpa implements IOrdinateurRepository {
 		return ordinateurs;
 	}
 
+	@Override
+	public Ordinateur findByStagiaireId(Integer id) {
+Ordinateur ordinateur = null;
+		
+		EntityManager em = null;
+		EntityTransaction tx = null;
+		
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+			
+			TypedQuery<Ordinateur> query = em.createQuery("select o from Ordinateur o where o.stagiaire.id = ?1", Ordinateur.class);
+			query.setParameter(1, id);
+			
+			ordinateur = query.getSingleResult();
+			
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+		
+		return ordinateur;
+	}
+
 }

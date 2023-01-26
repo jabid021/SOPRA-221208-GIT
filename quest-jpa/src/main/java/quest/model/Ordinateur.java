@@ -2,6 +2,7 @@ package quest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Ordinateur {
 	@Column(name = "brand", length = 100)
 	private String marque;
 	private int ram;
-	@OneToOne(mappedBy = "ordinateur")
+	@OneToOne(mappedBy = "ordinateur", fetch = FetchType.LAZY)
 	private Stagiaire stagiaire;
 
 	public Ordinateur() {
