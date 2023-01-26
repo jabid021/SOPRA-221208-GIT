@@ -352,8 +352,68 @@ public class FiliereRepositoryJpa implements IFiliereRepository {
 
 	@Override
 	public Filiere findByIdWithReferentAndMatieres(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Filiere filiere = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Filiere> query = em.createQuery("select distinct f from Filiere f join fetch f.matieres join fetch f.referent where f.id = ?1", Filiere.class);
+
+			query.setParameter(1, id);
+			
+			filiere = query.getSingleResult();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return filiere;
+	}
+
+	@Override
+	public Filiere findByIdWithMatieres(Integer id) {
+		Filiere filiere = null;
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Filiere> query = em.createQuery("select distinct f from Filiere f join fetch f.matieres where f.id = ?1", Filiere.class);
+
+			query.setParameter(1, id);
+			
+			filiere = query.getSingleResult();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return filiere;
 	}
 
 }

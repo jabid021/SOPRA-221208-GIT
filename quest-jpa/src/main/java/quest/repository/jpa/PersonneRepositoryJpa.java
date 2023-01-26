@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import quest.context.Application;
+import quest.model.Filiere;
 import quest.model.Formateur;
 import quest.model.Personne;
 import quest.model.Stagiaire;
@@ -315,6 +316,39 @@ public class PersonneRepositoryJpa implements IPersonneRepository {
 		}
 
 		return stagiaire;
+	}
+
+	@Override
+	public List<Stagiaire> findAllStagiaireByFiliere(Filiere filiere) {
+		List<Stagiaire> stagiaires = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Stagiaire> query = em.createQuery("select s from Stagiaire s join s.filieres f where f = :maFiliere", Stagiaire.class);
+
+			query.setParameter("maFiliere", filiere);
+			
+			stagiaires = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return stagiaires;
 	}
 
 }

@@ -169,8 +169,33 @@ public class ClientRepositoryJpa implements IClientRepository {
 
 	@Override
 	public List<Client> findAllWithFilieres() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Client> clients = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Client> query = em.createQuery("select distinct c from Client c join fetch c.filieres", Client.class);
+
+			clients = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return clients;
 	}
 
 }

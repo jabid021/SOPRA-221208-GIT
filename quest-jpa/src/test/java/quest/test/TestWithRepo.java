@@ -126,35 +126,49 @@ public class TestWithRepo {
 
 		System.out.println("stagiaire=" + stagiaire.getNom());
 		System.out.println("ordinateur=" + ordinateur.getMarque());
-		
+
 		Stagiaire stagiaireAudrey = personneRepo.findStagiaireByIdWithOrdinateur(audrey.getId());
 		System.out.println("stagiaireAudrey=" + stagiaireAudrey.getNom());
 		System.out.println("ordinateurAudrey=" + stagiaireAudrey.getOrdinateur().getMarque());
-		
+
 		Stagiaire stagiaireAurelien = personneRepo.findStagiaireById(aurelien.getId());
 		System.out.println("stagiaireAurelien=" + stagiaireAurelien.getNom());
 		Ordinateur ordinateurAurelien = ordinateurRepo.findByStagiaireId(aurelien.getId());
 		System.out.println("ordinateurAurelien=" + ordinateurAurelien.getMarque());
-		
+
 		List<Object[]> filiereRows = filiereRepo.findAllFiliereAndMatiere();
-		
-		for(Object[] filiereRow : filiereRows) {
+
+		for (Object[] filiereRow : filiereRows) {
 			Filiere filiere = (Filiere) filiereRow[0];
 			Matiere matiere = (Matiere) filiereRow[1];
-			
-			System.out.println("filiere="+filiere.getLibelle());
-			System.out.println("matiere="+matiere.getLibelle());
+
+			System.out.println("filiere=" + filiere.getLibelle());
+			System.out.println("matiere=" + matiere.getLibelle());
+		}
+
+		List<Filiere> filieresWithMatieres = filiereRepo.findAllWithMatieres();
+
+		for (Filiere filiereWithMatieres : filieresWithMatieres) {
+
+			System.out.println("filieresWithMatieres=" + filiereWithMatieres.getLibelle());
+
+			for (Matiere matiere : filiereWithMatieres.getMatieres()) {
+				System.out.println("matiere=" + matiere.getLibelle());
+			}
+		}
+
+		Filiere filiereWithStagiairesAndMatieres = filiereRepo.findByIdWithMatieres(java221208.getId());
+
+		System.out.println("filiereWithStagiairesAndMatieres=" + filiereWithStagiairesAndMatieres.getLibelle());
+
+		for (Matiere matiere : filiereWithStagiairesAndMatieres.getMatieres()) {
+			System.out.println("matiere=" + matiere.getLibelle());
 		}
 		
-		List<Filiere> filieresWithMatieres = filiereRepo.findAllWithMatieres();
 		
-		for(Filiere filiereWithMatieres : filieresWithMatieres) {
-			
-			System.out.println("filieresWithMatieres="+filiereWithMatieres.getLibelle());
-			
-			for(Matiere matiere : filiereWithMatieres.getMatieres()) {
-				System.out.println("matiere="+matiere.getLibelle());
-			}
+		
+		for (Stagiaire stagiaireFil : personneRepo.findAllStagiaireByFiliere(filiereWithStagiairesAndMatieres)) {
+			System.out.println("stagiaire=" + stagiaireFil.getNom());
 		}
 	}
 
