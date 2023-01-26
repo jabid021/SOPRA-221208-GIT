@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 import quest.context.Application;
 import quest.model.Adresse;
@@ -27,7 +26,7 @@ public class PopulateData {
 
 		EntityManager em = null;
 		EntityTransaction tx = null;
-		
+
 		Integer idFiliere = null;
 
 		try {
@@ -38,11 +37,11 @@ public class PopulateData {
 			Client sopraSteria = new Client("SOPRA STERIA", TypeClient.SA);
 			sopraSteria.setSiret("326 820 065 00083");
 			em.persist(sopraSteria);
-			
+
 			Salle saphirAJC = new Salle("SAPHIR", 4, 25, true);
 			saphirAJC.setAdr(new Adresse("6 rue Rougement", "1er escalier gauche", "75009", "Paris"));
 			em.persist(saphirAJC);
-			
+
 			Formateur jordan = new Formateur(Civilite.M, "ABID", "Jordan", "j.abid@ajc-ingenerie.fr", false, 10);
 			jordan.setAdresse(new Adresse("1 rue de la Paix", "2ème étage", "75008", "Paris"));
 			em.persist(jordan);
@@ -78,24 +77,23 @@ public class PopulateData {
 			em.persist(ordiAsus);
 
 			Ordinateur ordiHP = new Ordinateur("HP", 32);
-			em.persist(ordiHP);	
+			em.persist(ordiHP);
 
 			Stagiaire audrey = new Stagiaire(Civilite.MME, "PENAZZI", "Audrey", "audrey@gmail.com",
 					LocalDate.parse("1998-01-27"), NiveauEtude.BAC_5);
 			audrey.setAdresse(new Adresse("1 rue de Bordeaux", "", "31200", "Toulouse"));
 			audrey.setOrdinateur(ordiAsus);
 			em.persist(audrey);
-			
+
 			Stagiaire aurelien = new Stagiaire(Civilite.M, "BULME", "Aurélien", "aurelien@gmail.com",
 					LocalDate.parse("1996-07-17"), NiveauEtude.BAC_5);
 			aurelien.setAdresse(new Adresse("1 rue de Toulouse", "", "33000", "Bordeaux"));
 			aurelien.setOrdinateur(ordiHP);
 			em.persist(aurelien);
-			
-			java221208.getStagiaires().add(audrey);
+
+			java221208.getStagiaires().add(audrey); // managed => synchro
 			java221208.getStagiaires().add(aurelien);
-			
-						
+
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,10 +130,6 @@ public class PopulateData {
 //				em.close();
 //			}
 //		}
-		
-		
-		
-		
 
 		emf.close();
 
