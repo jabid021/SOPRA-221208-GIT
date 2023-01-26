@@ -224,14 +224,68 @@ public class FiliereRepositoryJpa implements IFiliereRepository {
 
 	@Override
 	public List<Filiere> findAllBySalleVille(String ville) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Filiere> filieres = new ArrayList<>();
+
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Filiere> query = em.createQuery("select f from Filiere f where f.salle.adr.ville = ?1", Filiere.class);
+			
+			query.setParameter(1, ville);
+			
+			filieres = query.getResultList();
+
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return filieres;
 	}
 
 	@Override
 	public int countByReferentNom(String nom) {
-		// TODO Auto-generated method stub
-		return 0;
+		Long count = 0L;
+		
+		EntityManager em = null;
+		EntityTransaction tx = null;
+
+		try {
+			em = Application.getInstance().getEmf().createEntityManager();
+			tx = em.getTransaction();
+			tx.begin();
+
+			TypedQuery<Long> query = em.createQuery("select count(f) from Filiere f where f.referent.nom = ?1", Long.class);
+			
+			query.setParameter(1, nom);
+			
+			count = query.getSingleResult();
+			
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (tx != null && tx.isActive()) {
+				tx.rollback();
+			}
+		} finally {
+			if (em != null) {
+				em.close();
+			}
+		}
+
+		return count.intValue();
 	}
 
 }

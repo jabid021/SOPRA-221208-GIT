@@ -114,6 +114,10 @@ public class TestWithRepo {
 		filieres = filiereRepo.findAllByNomClient("SOPRA STERIA");
 		
 		System.out.println(filieres.size());
+		
+		int size =  filiereRepo.countByReferentNom("ABID");
+		
+		System.out.println("count=" +size);
 	}
 
 }
