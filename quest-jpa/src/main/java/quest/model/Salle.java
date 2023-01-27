@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "classroom")
@@ -17,6 +18,8 @@ public class Salle {
 	@Id
 	@Column(name = "floor")
 	private int etage;
+	@Version
+	private int version;
 	@Column(name = "capacity")
 	private int capacite;
 	@Column(name = "video_projector")
@@ -50,6 +53,14 @@ public class Salle {
 
 	public void setEtage(int etage) {
 		this.etage = etage;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public int getCapacite() {

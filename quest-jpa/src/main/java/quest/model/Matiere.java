@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "subject")
@@ -16,6 +17,8 @@ public class Matiere {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name = "label", length = 100)
 	private String libelle;
 	private int quest;
@@ -42,6 +45,14 @@ public class Matiere {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getLibelle() {

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "computer")
@@ -16,6 +17,8 @@ public class Ordinateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name = "brand", length = 100)
 	private String marque;
 	private int ram;
@@ -38,6 +41,14 @@ public class Ordinateur {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getMarque() {

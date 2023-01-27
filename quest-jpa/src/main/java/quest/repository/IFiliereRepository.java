@@ -19,4 +19,6 @@ public interface IFiliereRepository extends IRepository<Filiere, Integer>{
 	Filiere findByIdWithReferentAndMatieres(Integer id);
 	
 	Filiere findByIdWithMatieres(Integer id);
+	
+	Filiere findByIdWithStagiaires(Integer id);
 }

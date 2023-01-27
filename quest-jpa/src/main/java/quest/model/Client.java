@@ -8,12 +8,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "customer")
 public class Client {
 	@EmbeddedId
 	private ClientId id;
+	@Version
+	private int version;
 	@Column(length = 50)
 	private String siret;
 	@OneToMany(mappedBy = "client")
@@ -22,7 +25,7 @@ public class Client {
 	public Client() {
 		super();
 	}
-	
+
 	public Client(String nom, TypeClient type) {
 		super();
 		this.id = new ClientId(nom, type);
@@ -34,6 +37,14 @@ public class Client {
 
 	public void setId(ClientId id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getSiret() {

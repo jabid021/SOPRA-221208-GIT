@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "cursus")
@@ -27,6 +28,8 @@ public class Filiere {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Version
+	private int version;
 	@Column(name = "label", length = 255)
 	private String libelle;
 	@Column(name = "start")
@@ -42,7 +45,7 @@ public class Filiere {
 	private Formateur referent;
 	@OneToMany(mappedBy = "filiere")
 	private List<Matiere> matieres = new ArrayList<>();
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumns({ @JoinColumn(name = "classroom_name", referencedColumnName = "name"),
 			@JoinColumn(name = "classroom_floor", referencedColumnName = "floor") })
 	private Salle salle;
@@ -69,6 +72,14 @@ public class Filiere {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getLibelle() {
