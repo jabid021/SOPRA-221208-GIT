@@ -28,7 +28,7 @@ public class Pianiste implements IMusicien {
 
 	@Override
 	public void jouer() {
-		System.out.println("Le guitariste joue : (" + this.instrument.toString() + ")");
+		System.out.println("Le pianiste joue : (" + this.instrument.toString() + ")");
 	}
 
 }

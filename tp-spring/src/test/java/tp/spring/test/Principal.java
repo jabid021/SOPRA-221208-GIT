@@ -2,14 +2,18 @@ package tp.spring.test;
 
 import java.util.Scanner;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import tp.spring.config.ApplicationConfig;
 import tp.spring.orchestre.IMusicien;
 
 public class Principal {
 
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext spring = new ClassPathXmlApplicationContext("application-context.xml");
+//		ClassPathXmlApplicationContext spring = new ClassPathXmlApplicationContext("application-context.xml");
+		
+		AnnotationConfigApplicationContext spring = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+		
 
 		System.out.println("Quel musicien souhaitez-vous entendre ?");
 		System.out.println("1 - Guitariste");

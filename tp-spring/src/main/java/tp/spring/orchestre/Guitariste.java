@@ -10,7 +10,7 @@ public class Guitariste implements IMusicien {
 	@Autowired
 	@Qualifier("guitare")
 	private IInstrument instrument;
-	@Value("La machine à valer")
+	@Value("Vive le vent ...")
 	private String morceau;
 
 	public Guitariste() {
