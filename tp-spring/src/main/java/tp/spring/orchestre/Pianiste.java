@@ -1,5 +1,10 @@
 package tp.spring.orchestre;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Pianiste implements IMusicien {
 	private IInstrument instrument;
 
@@ -7,7 +12,8 @@ public class Pianiste implements IMusicien {
 		super();
 	}
 
-	public Pianiste(IInstrument instrument) {
+	@Autowired
+	public Pianiste(@Qualifier("piano") IInstrument instrument) {
 		super();
 		this.instrument = instrument;
 	}

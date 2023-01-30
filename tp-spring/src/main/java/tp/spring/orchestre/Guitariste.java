@@ -1,7 +1,16 @@
 package tp.spring.orchestre;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Guitariste implements IMusicien {
+	@Autowired
+	@Qualifier("guitare")
 	private IInstrument instrument;
+	@Value("La machine à valer")
 	private String morceau;
 
 	public Guitariste() {

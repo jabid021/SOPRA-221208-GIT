@@ -21,13 +21,13 @@
 <!-- 		<property name="morceau" value="Vive le vent ..."/> -->
 <!-- 	</bean> -->
 	
-	<bean id="guitariste" class="tp.spring.orchestre.Guitariste">
-		<constructor-arg ref="ukulele"/>
-		<constructor-arg value="Vive le vent ..."/>
-	</bean>
+<!-- 	<bean id="guitariste" class="tp.spring.orchestre.Guitariste"> -->
+<!-- 		<constructor-arg ref="ukulele"/> -->
+<!-- 		<constructor-arg value="Vive le vent ..."/> -->
+<!-- 	</bean> -->
 	
-	<bean id="guitare" class="tp.spring.orchestre.Guitare"></bean>
+<!-- 	<bean id="guitare" class="tp.spring.orchestre.Guitare"></bean> -->
 	
-	<bean id="ukulele" class="tp.spring.orchestre.Ukulele"></bean>
+<!-- 	<bean id="ukulele" class="tp.spring.orchestre.Ukulele"></bean> -->
 
 </beans>
