@@ -9,5 +9,25 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Activation des annotations @Component, ... (optionnel si component-scan présent)-->
+	<context:annotation-config/>
 	
+	<!-- Précisez le(s) package(s) à scanner pour les annotations (activation implicite des annotations)-->
+	<context:component-scan base-package="tp.spring.orchestre"/>
+
+<!-- 	<bean id="guitariste" class="tp.spring.orchestre.Guitariste"> -->
+<!-- 		<property name="instrument" ref="guitare"/> -->
+<!-- 		<property name="morceau" value="Vive le vent ..."/> -->
+<!-- 	</bean> -->
+	
+	<bean id="guitariste" class="tp.spring.orchestre.Guitariste">
+		<constructor-arg ref="ukulele"/>
+		<constructor-arg value="Vive le vent ..."/>
+	</bean>
+	
+	<bean id="guitare" class="tp.spring.orchestre.Guitare"></bean>
+	
+	<bean id="ukulele" class="tp.spring.orchestre.Ukulele"></bean>
+
 </beans>
