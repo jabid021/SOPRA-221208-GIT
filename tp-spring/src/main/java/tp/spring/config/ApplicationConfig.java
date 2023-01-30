@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import tp.spring.orchestre.Guitare;
 import tp.spring.orchestre.IInstrument;
 import tp.spring.orchestre.IMusicien;
 import tp.spring.orchestre.Pianiste;
-import tp.spring.orchestre.Ukulele;
+import tp.spring.orchestre.Piano;
+import tp.spring.orchestre.Synthe;
 
 @Configuration
 @ComponentScan("tp.spring.orchestre")
@@ -16,12 +16,12 @@ public class ApplicationConfig {
 
 	@Bean
 	public IInstrument synthe() {
-		return new Guitare();
+		return new Synthe();
 	}
 
 	@Bean
 	public IInstrument piano() {
-		return new Ukulele();
+		return new Piano();
 	}
 
 	@Bean

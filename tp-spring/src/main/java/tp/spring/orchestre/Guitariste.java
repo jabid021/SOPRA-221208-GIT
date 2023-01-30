@@ -1,5 +1,7 @@
 package tp.spring.orchestre;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +44,11 @@ public class Guitariste implements IMusicien {
 	@Override
 	public void jouer() {
 		System.out.println("Le guitariste joue : " + this.morceau + " (" + this.instrument.toString() + ")");
+	}
+	
+	@PostConstruct
+	public void init() {
+		this.morceau = this.morceau.toUpperCase();
 	}
 
 }

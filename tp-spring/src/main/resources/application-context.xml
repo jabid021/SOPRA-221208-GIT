@@ -16,18 +16,20 @@
 	<!-- Précisez le(s) package(s) à scanner pour les annotations (activation implicite des annotations)-->
 	<context:component-scan base-package="tp.spring.orchestre"/>
 
-<!-- 	<bean id="guitariste" class="tp.spring.orchestre.Guitariste"> -->
-<!-- 		<property name="instrument" ref="guitare"/> -->
-<!-- 		<property name="morceau" value="Vive le vent ..."/> -->
-<!-- 	</bean> -->
+	<bean id="pianiste" class="tp.spring.orchestre.Pianiste">
+		<property name="instrument" ref="piano"/>
+	</bean>
 	
 <!-- 	<bean id="guitariste" class="tp.spring.orchestre.Guitariste"> -->
 <!-- 		<constructor-arg ref="ukulele"/> -->
 <!-- 		<constructor-arg value="Vive le vent ..."/> -->
 <!-- 	</bean> -->
 	
-<!-- 	<bean id="guitare" class="tp.spring.orchestre.Guitare"></bean> -->
+	<bean id="synthe" class="tp.spring.orchestre.Synthe"></bean>
 	
-<!-- 	<bean id="ukulele" class="tp.spring.orchestre.Ukulele"></bean> -->
+	<bean id="piano" class="tp.spring.orchestre.Piano"></bean>
+	
+	
+	
 
 </beans>

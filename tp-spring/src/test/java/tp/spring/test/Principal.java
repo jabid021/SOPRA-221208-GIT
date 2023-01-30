@@ -2,19 +2,19 @@ package tp.spring.test;
 
 import java.util.Scanner;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import tp.spring.config.ApplicationConfig;
 import tp.spring.orchestre.IMusicien;
 
 public class Principal {
 
-	public static void main(String[] args) {
-//		ClassPathXmlApplicationContext spring = new ClassPathXmlApplicationContext("application-context.xml");
-		
-		AnnotationConfigApplicationContext spring = new AnnotationConfigApplicationContext(ApplicationConfig.class);
-		
+	@Autowired
+	private IMusicien guitariste;
 
+	@Autowired
+	private IMusicien pianiste;
+
+	public void run(String[] args) {
 		System.out.println("Quel musicien souhaitez-vous entendre ?");
 		System.out.println("1 - Guitariste");
 		System.out.println("2 - Pianiste");
@@ -23,20 +23,17 @@ public class Principal {
 
 		int choix = clavier.nextInt();
 
-//		IMusicien monMusicien = null;
-//
-//		if (choix == 1) {
-//			monMusicien = spring.getBean("guitariste", IMusicien.class);
-//		} else {
-//			monMusicien = spring.getBean("pianiste", IMusicien.class);
-//		}
+		IMusicien monMusicien = null;
 
-		IMusicien monMusicien = spring.getBean(choix == 1 ? "guitariste" : "pianiste", IMusicien.class);
+		if (choix == 1) {
+			monMusicien = guitariste;
+		} else {
+			monMusicien = pianiste;
+		}
 
 		monMusicien.jouer();
 
 		clavier.close();
-		spring.close();
 	}
 
 }
