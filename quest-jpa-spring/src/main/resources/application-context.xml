@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Activation des annotations @Component, ... (optionnel si component-scan 
+		présent) -->
+	<context:annotation-config />
+
+	<!-- Précisez le(s) package(s) à scanner pour les annotations (activation 
+		implicite des annotations) -->
+<!-- 	<context:component-scan base-package="" /> -->
+
+	<!-- definition de la base de donnees -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<!-- definition des drivers pour la base de donnée ici mysql -->
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="mysql123"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/quest"></property>
+		<property name="maxTotal" value="10"></property>
+		<property name="initialSize" value="5"></property>
+	</bean>
+	<!-- definition de l'EntityManagerFactory -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- emplacement des entity -->
+		<property name="packagesToScan" value="quest.model"></property>
+		<!-- provider  on utilise hibernate comme implementation de jpa -->
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"></bean>
+		</property>
+		<!-- proprietes propre à la configuration d'hibernate -->
+		<property name="jpaProperties">
+			<props>
+			<!-- definition d'un map de type Properties -->
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- gestion des transactions par un bean -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- optionel  -->
+	<!-- translation d'exception -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"></bean>
+</beans>

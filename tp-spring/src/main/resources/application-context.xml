@@ -30,16 +30,16 @@
 	<bean id="piano" class="tp.spring.orchestre.Piano"></bean>
 	
 	
-	<bean id="regisseurAspect" class="tp.spring.aspect.RegisseurAspect"/>
+<!-- 	<bean id="regisseurAspect" class="tp.spring.aspect.RegisseurAspect"/> -->
 	
-	<aop:config>
-		<aop:pointcut expression="execution(* tp.spring.orchestre.*.jouer(..))" id="regisseurPointcut"/>
+<!-- 	<aop:config> -->
+<!-- 		<aop:pointcut expression="execution(* tp.spring.orchestre.*.jouer(..))" id="regisseurPointcut"/> -->
 		
-		<aop:aspect ref="regisseurAspect">
-			<aop:before method="eteindreLumiere" pointcut-ref="regisseurPointcut"/>
+<!-- 		<aop:aspect ref="regisseurAspect"> -->
+<!-- 			<aop:before method="eteindreLumiere" pointcut-ref="regisseurPointcut"/> -->
 		
-			<aop:after method="allumerLumiere" pointcut-ref="regisseurPointcut"/>
-		</aop:aspect>
-	</aop:config>
+<!-- 			<aop:after method="allumerLumiere" pointcut-ref="regisseurPointcut"/> -->
+<!-- 		</aop:aspect> -->
+<!-- 	</aop:config> -->
 
 </beans>

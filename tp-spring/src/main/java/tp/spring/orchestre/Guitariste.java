@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import tp.spring.exception.FausseNoteExecption;
+
 @Component
 public class Guitariste implements IMusicien {
 	@Autowired
@@ -44,6 +46,7 @@ public class Guitariste implements IMusicien {
 	@Override
 	public void jouer() {
 		System.out.println("Le guitariste joue : " + this.morceau + " (" + this.instrument.toString() + ")");
+		throw new FausseNoteExecption();
 	}
 	
 	@PostConstruct
