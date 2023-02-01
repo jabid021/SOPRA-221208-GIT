@@ -31,7 +31,7 @@ public abstract class Personne {
 	@Column(name = "civility", length = 4)
 	@Enumerated(EnumType.STRING)
 	private Civilite civilite;
-	@Column(name = "last_name", length = 100)
+	@Column(name = "last_name", length = 100,nullable = false)
 	private String nom;
 	@Column(name = "first_name", length = 100)
 	private String prenom;

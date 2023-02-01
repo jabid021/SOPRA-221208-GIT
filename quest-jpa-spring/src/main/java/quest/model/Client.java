@@ -2,6 +2,7 @@ package quest.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -29,6 +30,12 @@ public class Client {
 	public Client(String nom, TypeClient type) {
 		super();
 		this.id = new ClientId(nom, type);
+	}
+	
+	public Client(String nom, TypeClient type,String siret) {
+		super();
+		this.id = new ClientId(nom, type);
+		this.siret=siret;
 	}
 
 	public ClientId getId() {
@@ -62,5 +69,24 @@ public class Client {
 	public void setFilieres(List<Filiere> filieres) {
 		this.filieres = filieres;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
 
 }

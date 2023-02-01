@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import quest.model.Client;
+import quest.model.ClientId;
 import quest.model.Filiere;
 
 public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
@@ -31,5 +33,8 @@ public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 
 	@Query("select f from Filiere f left join fetch f.matieres left join fetch f.stagiaires where f.id=:id")
 	Optional<Filiere> findByIdWithMatieresAndStagiaire(@Param("id") Integer id);
+
+//	@Query("update Filiere f set f.client=null where f.client.id=:client")
+//	void setClientToNullByClient(@Param("client") ClientId client);
 
 }

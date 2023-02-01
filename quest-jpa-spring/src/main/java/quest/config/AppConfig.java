@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@ComponentScan("quest.repository.jpa")
+@ComponentScan("quest.service")
 @EnableJpaRepositories("quest.repository")
 @EnableTransactionManagement
 public class AppConfig {
@@ -41,7 +41,7 @@ public class AppConfig {
 		Properties properties=new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
-		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.show_sql", "false");
 		emf.setJpaProperties(properties);
 		return emf;
 	}
