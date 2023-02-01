@@ -29,7 +29,7 @@ public interface ClientRepository extends JpaRepository<Client, ClientId> {
 	@Query("select distinct c from Client c join fetch c.filieres where c.id=:id")
 	Optional<Client> findbyIdWithFiliere(@Param("id") ClientId id);
 	
-	//pour requete delete ou update
+	//pour requete delete ou update @Modifying et @Transactional obligatoire
 	@Modifying
 	@Transactional
 	@Query("delete from Client c where c.id.nom=:nom")

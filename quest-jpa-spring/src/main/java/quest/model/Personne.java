@@ -1,5 +1,7 @@
 package quest.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -57,7 +59,7 @@ public abstract class Personne {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -104,6 +106,23 @@ public abstract class Personne {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Personne other = (Personne) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

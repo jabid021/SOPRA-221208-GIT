@@ -44,7 +44,7 @@ public class Filiere {
 	@JoinColumn(name = "referent_id")
 	private Formateur referent;
 	@OneToMany(mappedBy = "filiere")
-	private List<Matiere> matieres = new ArrayList<>();
+	private Set<Matiere> matieres = new ArrayList<>();
 	@OneToOne
 	@JoinColumns({ @JoinColumn(name = "classroom_name", referencedColumnName = "name"),
 			@JoinColumn(name = "classroom_floor", referencedColumnName = "floor") })

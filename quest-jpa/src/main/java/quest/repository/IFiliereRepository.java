@@ -12,7 +12,6 @@ public interface IFiliereRepository extends IRepository<Filiere, Integer>{
 	
 	int countByReferentNom(String nom);
 	
-	List<Object[]> findAllFiliereAndMatiere();
 	
 	List<Filiere> findAllWithMatieres();
 	

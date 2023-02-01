@@ -2,7 +2,10 @@ package quest.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,12 +42,12 @@ public class Filiere {
 	@ManyToMany
 	@JoinTable(name = "cursus_trainee", uniqueConstraints = @UniqueConstraint(columnNames = { "cursus_id",
 			"trainee_id" }), joinColumns = @JoinColumn(name = "cursus_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
-	private List<Stagiaire> stagiaires = new ArrayList<>();
+	private Set<Stagiaire> stagiaires = new HashSet<>();
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "referent_id")
 	private Formateur referent;
 	@OneToMany(mappedBy = "filiere")
-	private List<Matiere> matieres = new ArrayList<>();
+	private Set<Matiere> matieres = new HashSet<>();
 	@OneToOne
 	@JoinColumns({ @JoinColumn(name = "classroom_name", referencedColumnName = "name"),
 			@JoinColumn(name = "classroom_floor", referencedColumnName = "floor") })
@@ -106,11 +109,11 @@ public class Filiere {
 		this.fin = fin;
 	}
 
-	public List<Stagiaire> getStagiaires() {
+	public Set<Stagiaire> getStagiaires() {
 		return stagiaires;
 	}
 
-	public void setStagiaires(List<Stagiaire> stagiaires) {
+	public void setStagiaires(Set<Stagiaire> stagiaires) {
 		this.stagiaires = stagiaires;
 	}
 
@@ -122,11 +125,11 @@ public class Filiere {
 		this.referent = referent;
 	}
 
-	public List<Matiere> getMatieres() {
+	public Set<Matiere> getMatieres() {
 		return matieres;
 	}
 
-	public void setMatieres(List<Matiere> matieres) {
+	public void setMatieres(Set<Matiere> matieres) {
 		this.matieres = matieres;
 	}
 
@@ -145,5 +148,23 @@ public class Filiere {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Filiere other = (Filiere) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 
 }
