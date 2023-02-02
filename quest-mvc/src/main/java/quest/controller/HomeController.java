@@ -10,6 +10,8 @@ public class HomeController {
 	//le retour (String)=>la vue à afficher
 	@RequestMapping("/home")
 	public String home() {
-		return "/WEB-INF/views/home.jsp";
+		return "home";
 	}
+	
+
 }
