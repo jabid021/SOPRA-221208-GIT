@@ -23,10 +23,10 @@ public interface ClientRepository extends JpaRepository<Client, ClientId> {
 	List<Client> findByIdNom(String nom);
 	List<Client> findByIdNomContaining(String nom);
 	
-	@Query("select distinct c from Client c join fetch c.filieres")
+	@Query("select distinct c from Client c left join fetch c.filieres")
 	List<Client> findAllWithFilieres();
 	
-	@Query("select distinct c from Client c join fetch c.filieres where c.id=:id")
+	@Query("select distinct c from Client c left join fetch c.filieres where c.id=:id")
 	Optional<Client> findbyIdWithFiliere(@Param("id") ClientId id);
 	
 	//pour requete delete ou update @Modifying et @Transactional obligatoire

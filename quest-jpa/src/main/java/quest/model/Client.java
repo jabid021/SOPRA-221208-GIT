@@ -30,6 +30,12 @@ public class Client {
 		super();
 		this.id = new ClientId(nom, type);
 	}
+	
+	public Client(String nom, TypeClient type,String siret) {
+		super();
+		this.id = new ClientId(nom, type);
+		this.siret=siret;
+	}
 
 	public ClientId getId() {
 		return id;

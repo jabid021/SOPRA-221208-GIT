@@ -42,5 +42,12 @@ class ClientServiceSpringTest {
 			clientSrv.findById(new ClientId("ppppp", TypeClient.SARL));
 		});
 	}
+	
+	@Test
+	void deleteClientTest() {
+		Client client = new Client("test", TypeClient.SARL, "lllll");
+		client=clientSrv.create(client);
+		clientSrv.delete(client.getId());
+	}
 
 }
