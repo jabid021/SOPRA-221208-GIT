@@ -8,5 +8,10 @@
 </head>
 <body>
 <h1>demo parametre</h1>
+<hr/>
+<div>
+	les parametres recus:<br/>
+	prenom:${prenom}, nom:${nom}, age:${age}
+</div>
 </body>
 </html>
