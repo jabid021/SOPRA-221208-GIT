@@ -34,6 +34,7 @@ class ClientServiceSpringTest {
 		Client client = new Client("test", TypeClient.SARL, "lllll");
 		clientSrv.create(client);
 		assertNotNull(clientSrv.findById(client.getId()));
+		clientSrv.delete(client);
 	}
 
 	@Test
