@@ -14,7 +14,9 @@
 		<div>prenom obligatoire</div>
 	</c:if>
 	<form action="bonjour" method="post">
-		<input name="prenom" placeholder="saisir votre prenom">
+		<input name="prenom" placeholder="saisir votre prenom"><br/>
+		<input name="nom" placeholder="saisir votre nom"><br/>
+		<input name="adresse.ville"><br/>
 		<button type="submit">envoyer</button>
 	</form>
 
