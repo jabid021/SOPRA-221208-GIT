@@ -8,10 +8,9 @@ public class HomeController {
 
 	//@RequestMapping=>Url qui permet d'arriver sur la methode
 	//le retour (String)=>la vue à afficher
+	
 	@RequestMapping("/home")
 	public String home() {
 		return "home";
 	}
-	
-
 }
