@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import quest.model.Civilite;
 import quest.model.Formateur;
 import quest.service.FormateurService;
 
@@ -26,14 +27,19 @@ public class FormateurController {
 	}
 
 	@GetMapping("/add")
-	public String add() {
-		return "formateur/edit";
+	public String add(Model model) {
+		return goForm(model, new Formateur());
 	}
 
 	@GetMapping("/update")
 	public String update(@RequestParam Integer id, Model model) {
-		model.addAttribute("formateur", formateurSrv.findById(id));
-		return "formateur/edit";
+		return goForm(model, formateurSrv.findById(id));
+	}
+
+	private String goForm(Model model, Formateur formateur) {
+		model.addAttribute("formateur", formateur);
+		model.addAttribute("civilites", Civilite.values());
+		return "formateur/editSpring";
 	}
 
 	@PostMapping("")
