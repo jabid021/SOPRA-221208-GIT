@@ -11,11 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import quest.model.Client;
-import quest.model.ClientId;
 import quest.model.Filiere;
 import quest.model.Formateur;
-import quest.model.Salle;
-import quest.model.TypeClient;
 
 public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 	List<Filiere> findByLibelle(String libelle);
@@ -27,19 +24,23 @@ public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 	// @Query("select count(f) from Filiere f where f.referent.nom=:nom")
 	int countByReferentNom(String nom);
 
-	@Query("select f from Filiere f left join fetch f.matieres")
+	
+	@Query("select distinct f from Filiere f left join fetch f.referent")
+	List<Filiere> findAllWithReferent();
+	
+	@Query("select distinct f from Filiere f left join fetch f.matieres")
 	List<Filiere> findAllWithMatieres();
 
-	@Query("select f from Filiere f left join fetch f.referent left join fetch f.matieres where f.id=:id")
+	@Query("select distinct f from Filiere f left join fetch f.referent left join fetch f.matieres where f.id=:id")
 	Optional<Filiere> findByIdWithReferentAndMatieres(@Param("id") Integer id);
 
-	@Query("select f from Filiere f left join fetch f.matieres where f.id=:id")
+	@Query("select distinct f from Filiere f left join fetch f.matieres where f.id=:id")
 	Optional<Filiere> findByIdWithMatieres(Integer id);
 
-	@Query("select f from Filiere f left join fetch f.stagiaires where f.id=:id")
+	@Query("select distinct f from Filiere f left join fetch f.stagiaires where f.id=:id")
 	Optional<Filiere> findByIdWithStagiaires(Integer id);
 
-	@Query("select f from Filiere f left join fetch f.matieres left join fetch f.stagiaires where f.id=:id")
+	@Query("select distinct f from Filiere f left join fetch f.matieres left join fetch f.stagiaires where f.id=:id")
 	Optional<Filiere> findByIdWithMatieresAndStagiaire(@Param("id") Integer id);
 
 //	@Query("update Filiere f set f.client=null where f.client.id.nom=:nom and f.client.id.type=:type")

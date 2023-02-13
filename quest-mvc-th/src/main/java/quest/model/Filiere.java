@@ -1,9 +1,7 @@
 package quest.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "cursus")
 public class Filiere {
@@ -36,8 +36,10 @@ public class Filiere {
 	@Column(name = "label", length = 255)
 	private String libelle;
 	@Column(name = "start")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate debut;
 	@Column(name = "end")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fin;
 	@ManyToMany
 	@JoinTable(name = "cursus_trainee", uniqueConstraints = @UniqueConstraint(columnNames = { "cursus_id",

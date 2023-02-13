@@ -28,8 +28,18 @@ public class ClientController {
 	
 	@GetMapping("/add")
 	public String nouveauClient(Model model) {
+		model.addAttribute("client", new Client());
 		model.addAttribute("types", TypeClient.values());
-		return "client/add";
+		model.addAttribute("mode", "add");
+		return "client/form";
+	}
+	
+	@GetMapping("/edit")
+	public String editerClient(@ModelAttribute ClientId id, Model model) {
+		model.addAttribute("client", clientSrv.findById(id));
+		model.addAttribute("types", TypeClient.values());
+		model.addAttribute("mode", "edit");
+		return "client/form";
 	}
 	
 	@PostMapping("")
@@ -38,7 +48,7 @@ public class ClientController {
 		clientSrv.create(client);
 		}catch (Exception e) {
 			model.addAttribute("error", true);
-			return "client/add";
+			return "client/edit";
 		}
 		return "redirect:/client";
 	}
