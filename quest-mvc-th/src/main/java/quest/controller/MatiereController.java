@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import quest.model.Formateur;
 import quest.model.Matiere;
+import quest.service.FormateurService;
 import quest.service.MatiereService;
 
 @Controller
@@ -20,6 +22,9 @@ public class MatiereController {
 
 	@Autowired
 	private MatiereService matiereService;
+
+	@Autowired
+	private FormateurService formateurService;
 
 	@GetMapping("") // ETAPE 1 : RECEPTION DE LA REQUETE
 	public String list(Model model) {
@@ -36,6 +41,7 @@ public class MatiereController {
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("matiere", new Matiere());
+		model.addAttribute("formateurs", formateurService.findAll());
 
 		return "matiere/form";
 	}
@@ -43,12 +49,20 @@ public class MatiereController {
 	@GetMapping("/edit")
 	public String edit(@RequestParam Integer id, Model model) {
 		model.addAttribute("matiere", matiereService.findById(id));
-
+		model.addAttribute("formateurs", formateurService.findAll());
+		
 		return "matiere/form";
 	}
 
 	@PostMapping("")
-	public String save(@ModelAttribute("matiere") Matiere matiere) {
+	public String save(@ModelAttribute("matiere") Matiere matiere, @RequestParam(required = false) Integer idFormateur) {
+		if(idFormateur != null) {
+			Formateur formateur = formateurService.findById(idFormateur);
+			matiere.setFormateur(formateur);
+		} else {
+			matiere.setFormateur(null);
+		}
+		
 		if (matiere.getId() == null) {
 			matiereService.create(matiere);
 		} else {

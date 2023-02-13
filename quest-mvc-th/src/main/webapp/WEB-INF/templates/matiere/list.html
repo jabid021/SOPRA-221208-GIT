@@ -19,6 +19,7 @@
 						<th>Identifiant</th>
 						<th>Libellé</th>
 						<th>Quest</th>
+						<th>Formateur</th>
 						<th></th>
 					</tr>
 					</thead>
@@ -27,6 +28,7 @@
 							<td th:text="${mat.id}"></td>
 							<td>[[${mat.libelle}]]</td>
 							<td>[[${mat.quest}]]</td>
+							<td>[[${mat.formateur?.nom}]]</td>
 							<td>
 								<div class='btn-group btn-group-sm'>
 									<a th:href="@{/matiere/edit(id=${mat.id})}" class='btn btn-primary'>

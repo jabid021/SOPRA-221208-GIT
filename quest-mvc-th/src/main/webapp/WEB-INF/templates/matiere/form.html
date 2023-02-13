@@ -28,6 +28,13 @@
 						<label for="quest">Quest:</label> <input type="number" 
 							class="form-control" name="quest" th:value="${matiere.quest}">
 					</div>
+					<div class="form-group">
+						<label for="idFormateur">Formateur:</label>
+						<select name="idFormateur" class="form-control">
+							<option value="">Veuillez sélectionner un formateur</option>
+							<option th:each="form : ${formateurs}"  th:value="${form.id}" th:selected="${form.id == matiere.formateur?.id}">[[${form.nom}]] [[${form.prenom}]]</option>
+						</select>
+					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >
 					<div class="btn-group btn-group-lg ">

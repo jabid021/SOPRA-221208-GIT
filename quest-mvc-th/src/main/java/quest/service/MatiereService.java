@@ -61,7 +61,7 @@ public class MatiereService {
 		Matiere matiereEnBase = findById(matiere.getId());
 		matiereEnBase.setLibelle(matiere.getLibelle());
 		matiereEnBase.setQuest(matiere.getQuest());
-
+		matiereEnBase.setFormateur(matiere.getFormateur());
 
 		return matiereRepo.save(matiereEnBase);
 	}
