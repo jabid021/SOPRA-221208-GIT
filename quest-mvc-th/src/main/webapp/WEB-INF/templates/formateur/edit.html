@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- ETAPE 5 : EXECUTION DE LA VIEW (AVEC LES DONNEES DU MODEL) -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition du formateur</title>
+</head>
+<body>
+<section layout:fragment="monContenu">
+	<div class="container">
+		<div class="card mt-3">
+		
+			<form th:action="@{/formateur}" method="post"> 
+				<input type="hidden" name="version" th:value="${formateur.version}"/>
+				<div class="card-header bg-info text-white"><h3>Edition du formateur</h3></div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="id">Identifiant:</label> <input type="number"
+							class="form-control" name="id" readonly th:value="${formateur.id}">
+					</div>
+					<div class="form-group">
+						<label for="civilite">Civilité:</label>
+						<select class="form-control" name="civilite">
+							<option value="">Veuillez sélectionner une civilité</option>
+							<option th:each="civ : ${civilites}" th:value="${civ}" th:selected="${civ == formateur.civilite}">[[${civ}]]</option>
+
+						</select> 
+					</div>
+					<div class="form-group">
+						<label for="nom">Nom:</label> <input type="text"
+							class="form-control" name="nom" th:value="${formateur.nom}">
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom:</label> <input type="text" 
+							class="form-control" name="prenom" th:value="${formateur.prenom}">
+					</div>
+					<div class="form-group">
+						<label for="adresse.rue">Rue:</label> <input type="text" 
+							class="form-control" name="adresse.rue" th:value="${formateur.adresse?.rue}">
+					</div>
+					<div class="form-group">
+						<label for="adresse.complement">Complément:</label> <input type="text" 
+							class="form-control" name="adresse.complement" th:value="${formateur.adresse?.complement}">
+					</div>
+					<div class="form-group">
+						<label for="adresse.codePostal">Code postal:</label> <input type="text" 
+							class="form-control" name="adresse.codePostal" th:value="${formateur.adresse?.codePostal}">
+					</div>
+					<div class="form-group">
+						<label for="adresse.ville">Ville:</label> <input type="text" 
+							class="form-control" name="adresse.ville" th:value="${formateur.adresse?.ville}">
+					</div>
+				</div>
+				<div class="card-footer d-flex justify-content-end" >
+					<div class="btn-group btn-group-lg ">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/formateur}" class="btn btn-warning">
+							<i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</section>
+
+</body>
+</html>

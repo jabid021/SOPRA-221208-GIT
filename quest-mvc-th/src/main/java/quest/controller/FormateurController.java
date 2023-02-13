@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import quest.model.Adresse;
 import quest.model.Civilite;
 import quest.model.Formateur;
 import quest.service.FormateurService;
@@ -25,9 +26,9 @@ public class FormateurController {
 	@GetMapping("")
 	public String list(Model model) {
 		List<Formateur> formateurs = formateurSrv.findAll();
-		
+
 		model.addAttribute("formateurs", formateurs);
-		
+
 		return "formateur/list";
 	}
 
@@ -44,11 +45,35 @@ public class FormateurController {
 	private String goForm(Model model, Formateur formateur) {
 		model.addAttribute("formateur", formateur);
 		model.addAttribute("civilites", Civilite.values());
-		return "formateur/editSpring";
+		return "formateur/edit";
 	}
 
 	@PostMapping("")
 	public String save(@ModelAttribute Formateur formateur) {
+		if (formateur.getId() == null) {
+			formateurSrv.create(formateur);
+		} else {
+			formateurSrv.update(formateur);
+		}
+		return "redirect:/formateur";
+	}
+
+	@PostMapping("/bis")
+	public String save(@RequestParam Integer id, @RequestParam String nom, @RequestParam String prenom, @RequestParam String rue, @RequestParam String complement, @RequestParam String codePostal, @RequestParam String ville) {
+		Formateur formateur = new Formateur();
+		formateur.setId(id);
+		formateur.setNom(nom);
+		formateur.setPrenom(prenom);
+		
+		Adresse adresse = new Adresse();
+		adresse.setRue(rue);
+		adresse.setComplement(complement);
+		adresse.setCodePostal(codePostal);
+		adresse.setVille(ville);
+		
+		formateur.setAdresse(adresse);
+		
+
 		if (formateur.getId() == null) {
 			formateurSrv.create(formateur);
 		} else {

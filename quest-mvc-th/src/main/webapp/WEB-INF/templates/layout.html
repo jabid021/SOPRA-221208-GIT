@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title layout:title-pattern="$CONTENT_TITLE"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+</head>
+<body>
+	<header>
+		<ul class="nav nav-pills m-5">
+			<li class="nav-item"><a class="nav-link" th:href="@{/}">Accueil</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/stagiaire}">Stagiaire</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/formateur}">Formateur</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{/client}">Client</a></li>
+		</ul>
+	</header>
+	<div class="container-fluid">
+		<section layout:fragment="monContenu"></section>
+	</div>
+	
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

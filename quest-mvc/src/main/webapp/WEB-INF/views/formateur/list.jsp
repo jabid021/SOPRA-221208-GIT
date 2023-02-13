@@ -25,8 +25,7 @@
 				<tr>
 					<th>id:</th>
 					<th>prenom:</th>
-					<th>nom:
-					<th>
+					<th>nom:</th>
 					<th></th>
 					<th></th>
 				</tr>
