@@ -2,6 +2,7 @@ package quest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Pattern;
 
 @Embeddable
 public class Adresse {
@@ -10,6 +11,7 @@ public class Adresse {
 	@Column(length = 255)
 	private String complement;
 	@Column(name="zipcode", length = 10)
+	@Pattern(regexp = "^([0-9]{2}|2[abAB])[0-9]{3}$", message="code postal invalide")
 	private String codePostal;
 	@Column(name="city", length = 100)
 	private String ville;

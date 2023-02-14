@@ -17,6 +17,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -46,6 +47,7 @@ public abstract class Personne {
 	@Email(message="format email incorrect")
 	private String email;
 	@Embedded
+	@Valid
 	private Adresse adresse;
 
 	public Personne() {
