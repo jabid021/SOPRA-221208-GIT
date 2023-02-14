@@ -10,6 +10,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<commons-dbcp2.version>2.9.0</commons-dbcp2.version>
 		<hibernate.version>5.6.14.Final</hibernate.version>
+		<hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
 		<jsp-api.version>2.3.3</jsp-api.version>
 		<junit-jupiter>5.9.0</junit-jupiter>
 		<mysql.version>8.0.32</mysql.version>
@@ -30,6 +31,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>${hibernate-validator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

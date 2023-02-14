@@ -2,15 +2,19 @@ package quest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import quest.controller.validator.FiliereValidator;
 import quest.model.Filiere;
 import quest.model.Formateur;
 import quest.service.FiliereService;
@@ -55,7 +59,13 @@ public class FiliereController {
 	}
 
 	@PostMapping("")
-	public String save(@ModelAttribute("filiere") Filiere filiere, @RequestParam(required = false) Integer idReferent) {
+	public String save(@ModelAttribute("filiere") @Valid Filiere filiere, BindingResult result, @RequestParam(required = false) Integer idReferent) {
+		new FiliereValidator().validate(filiere, result);
+		
+		if(result.hasErrors()) {
+			return "filiere/form";
+		}
+		
 		if(idReferent != null) {
 			Formateur formateur = formateurService.findById(idReferent);
 			filiere.setReferent(formateur);

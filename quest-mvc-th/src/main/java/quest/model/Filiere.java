@@ -21,6 +21,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,9 +36,11 @@ public class Filiere {
 	@Version
 	private int version;
 	@Column(name = "label", length = 255)
+	@Size(min = 3, max = 255, message = "Le libellé doît avoir entre 3 et 255 caractères")
 	private String libelle;
 	@Column(name = "start")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Past
 	private LocalDate debut;
 	@Column(name = "end")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -78,7 +82,7 @@ public class Filiere {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}
@@ -167,6 +171,5 @@ public class Filiere {
 		Filiere other = (Filiere) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }

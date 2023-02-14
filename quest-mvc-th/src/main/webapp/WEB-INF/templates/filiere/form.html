@@ -21,19 +21,23 @@
 						<div class="form-group">
 							<label for="id">Identifiant:</label> <input type="number"
 								class="form-control" name="id" readonly th:value="${filiere.id}">
+							<span class="text-danger" th:errors="${filiere.id}"></span>
 						</div>
 						<div class="form-group">
 							<label for="libelle">Libellé:</label> <input type="text"
 								class="form-control" name="libelle"
 								th:value="${filiere.libelle}"> 
+							<span class="text-danger" th:errors="${filiere.libelle}"></span>
 						</div>
 						<div class="form-group">
 							<label for="debut">Date de début:</label> <input type="date"
 								class="form-control" name="debut" th:value="${filiere.debut}">
+							<span class="text-danger" th:errors="${filiere.debut}"></span>
 						</div>
 						<div class="form-group">
 							<label for="fin">Date de fin:</label> <input type="date"
 								class="form-control" name="fin" th:value="${filiere.fin}">
+							<span class="text-danger" th:errors="${filiere.fin}"></span>
 						</div>
 						<div class="form-group">
 							<label for="idReferent">Référent:</label>
@@ -41,6 +45,7 @@
 								<option value="">Veuillez sélectionner un formateur référent</option>
 								<option th:each="form : ${formateurs}"  th:value="${form.id}" th:selected="${form.id == filiere.referent?.id}">[[${form.nom}]] [[${form.prenom}]]</option>
 							</select>
+							<span class="text-danger" th:errors="${filiere.referent.id}"></span>
 						</div>
 					</div>
 			</div>
