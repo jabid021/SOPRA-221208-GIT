@@ -19,6 +19,7 @@
 					<div class="form-group">
 						<label for="id">Identifiant:</label> <input type="number"
 							class="form-control" name="id" readonly th:value="${formateur.id}">
+						<span class="text-danger" th:errors="${formateur.id}"></span>
 					</div>
 					<div class="form-group">
 						<label for="civilite">Civilité:</label>
@@ -27,30 +28,43 @@
 							<option th:each="civ : ${civilites}" th:value="${civ}" th:selected="${civ == formateur.civilite}">[[${civ}]]</option>
 
 						</select> 
+						<span class="text-danger" th:errors="${formateur.civilite}"></span>
 					</div>
 					<div class="form-group">
 						<label for="nom">Nom:</label> <input type="text"
 							class="form-control" name="nom" th:value="${formateur.nom}">
+							<span class="text-danger" th:errors="${formateur.nom}"></span>
 					</div>
+					
 					<div class="form-group">
 						<label for="prenom">Prénom:</label> <input type="text" 
 							class="form-control" name="prenom" th:value="${formateur.prenom}">
+						<span class="text-danger" th:errors="${formateur.prenom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="text" 
+							class="form-control" name="email" th:value="${formateur.email}">
+						<span class="text-danger" th:errors="${formateur.email}"></span>
 					</div>
 					<div class="form-group">
 						<label for="adresse.rue">Rue:</label> <input type="text" 
 							class="form-control" name="adresse.rue" th:value="${formateur.adresse?.rue}">
+						<span class="text-danger" th:errors="${formateur.adresse.rue}"></span>
 					</div>
 					<div class="form-group">
 						<label for="adresse.complement">Complément:</label> <input type="text" 
 							class="form-control" name="adresse.complement" th:value="${formateur.adresse?.complement}">
+						<span class="text-danger" th:errors="${formateur.adresse.complement}"></span>
 					</div>
 					<div class="form-group">
 						<label for="adresse.codePostal">Code postal:</label> <input type="text" 
 							class="form-control" name="adresse.codePostal" th:value="${formateur.adresse?.codePostal}">
+						<span class="text-danger" th:errors="${formateur.adresse.codePostal}"></span>
 					</div>
 					<div class="form-group">
 						<label for="adresse.ville">Ville:</label> <input type="text" 
 							class="form-control" name="adresse.ville" th:value="${formateur.adresse?.ville}">
+						<span class="text-danger" th:errors="${formateur.adresse.ville}"></span>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >

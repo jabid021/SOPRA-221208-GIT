@@ -17,6 +17,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "person", uniqueConstraints = @UniqueConstraint(columnNames = { "last_name", "first_name" }))
@@ -30,12 +33,17 @@ public abstract class Personne {
 	private int version;
 	@Column(name = "civility", length = 4)
 	@Enumerated(EnumType.STRING)
+	@NotNull(message="civilité obligatoire")
 	private Civilite civilite;
-	@Column(name = "last_name", length = 100,nullable = false)
+	@Column(name = "last_name", length = 100, nullable = false)
+	@NotBlank(message = "le nom est obligatoire")
 	private String nom;
 	@Column(name = "first_name", length = 100)
+	@NotBlank(message = "le prénom est obligatoire")
 	private String prenom;
 	@Column(length = 255)
+	@NotBlank(message = "email obligatoire !")
+	@Email(message="format email incorrect")
 	private String email;
 	@Embedded
 	private Adresse adresse;

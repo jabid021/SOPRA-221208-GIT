@@ -7,14 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class ClientId implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Column(name="name", length = 100)
+	@Column(name = "name", length = 100)
+	@NotBlank(message = "le nom du client est obligatoire")
 	private String nom;
 	@Column(length = 10)
 	@Enumerated(EnumType.STRING)
+	@NotNull (message = "le type du client est obligatoire")
 	private TypeClient type;
 
 	public ClientId() {

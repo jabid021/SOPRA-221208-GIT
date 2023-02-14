@@ -12,13 +12,15 @@
 	<div class="container">
 		<div class="card mt-3">
 		
-			<form th:action="@{/client}" method="post"> 
+			<form th:action="@{/client}" method="post">
+				<input type="hidden" name="mode" th:value="${mode}"/> 
 				<input type="hidden" name="version" th:value="${client.version}"/>
 				<div class="card-header bg-info text-white"><h3>Edition du client</h3></div>
 				<div class="card-body">
 					<div class="form-group">
 						<label for="id.nom">Nom:</label> <input type="text" th:readonly="${mode == 'edit'}"
 							class="form-control" name="id.nom" th:value="${client.id?.nom}">
+						<span class="text-danger" th:errors="${client.id.nom}"></span>
 					</div>
 					
 					<div class="form-group">
@@ -27,10 +29,12 @@
 							<option value="">Veuillez sélectionner un type de client</option>
 							<option th:each="type : ${types}" th:value="${type}" th:selected="${type == client.id?.type}">[[${type}]]</option>
 						</select> 
+						<span class="text-danger" th:errors="${client.id.type}"></span>
 					</div>
 					<div class="form-group">
 						<label for="siret">Siret:</label> <input type="text" 
 							class="form-control" name="siret" th:value="${client.siret}">
+						<span class="text-danger" th:errors="${client.siret}"></span>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >

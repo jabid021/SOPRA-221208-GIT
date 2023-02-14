@@ -1,12 +1,16 @@
 package quest.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import quest.model.Client;
 import quest.model.ClientId;
@@ -43,12 +47,19 @@ public class ClientController {
 	}
 	
 	@PostMapping("")
-	public String enregistrer(@ModelAttribute Client client,Model model) {
+	public String enregistrer(@ModelAttribute @Valid Client client, BindingResult result, Model model, @RequestParam String mode) {
+		if(result.hasErrors()) {
+			model.addAttribute("types", TypeClient.values());
+			model.addAttribute("mode", mode);
+			
+			return "client/form"; 
+		}
+		
 		try {
 		clientSrv.create(client);
 		}catch (Exception e) {
 			model.addAttribute("error", true);
-			return "client/edit";
+			return "client/form";
 		}
 		return "redirect:/client";
 	}

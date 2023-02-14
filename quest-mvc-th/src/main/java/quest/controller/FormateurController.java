@@ -2,15 +2,19 @@ package quest.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import quest.controller.validator.FormateurValidator;
 import quest.model.Adresse;
 import quest.model.Civilite;
 import quest.model.Formateur;
@@ -49,7 +53,14 @@ public class FormateurController {
 	}
 
 	@PostMapping("")
-	public String save(@ModelAttribute Formateur formateur) {
+	public String save(@Valid @ModelAttribute Formateur formateur, BindingResult result, Model model) {
+		new FormateurValidator().validate(formateur, result);
+		
+		if(result.hasErrors()) {
+			model.addAttribute("civilites", Civilite.values());
+			return "formateur/edit";
+		}
+		
 		if (formateur.getId() == null) {
 			formateurSrv.create(formateur);
 		} else {

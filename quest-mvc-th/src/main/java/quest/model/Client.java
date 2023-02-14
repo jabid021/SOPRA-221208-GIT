@@ -10,15 +10,20 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.Valid;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "customer")
 public class Client {
 	@EmbeddedId
+	@Valid
 	private ClientId id;
 	@Version
 	private int version;
 	@Column(length = 50)
+	@Pattern(regexp = "^[0-9]{14}$", message="siret de 14 chiffres")
 	private String siret;
 	@OneToMany(mappedBy = "client")
 	private List<Filiere> filieres = new ArrayList<>();
