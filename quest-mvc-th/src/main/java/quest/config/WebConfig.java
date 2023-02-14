@@ -1,12 +1,18 @@
 package quest.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -52,5 +58,29 @@ public class WebConfig implements WebMvcConfigurer {
 		viewResolver.setTemplateEngine(templateEngine);
 
 		return viewResolver;
+	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("traduction");
+		messageSource.setDefaultEncoding("UTF-8");
+		
+		return messageSource;
+	}
+	
+	@Bean
+	public LocaleResolver localeResolver() {
+		CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+		localeResolver.setDefaultLocale(null);
+		
+	    return localeResolver;
+	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+	    LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+	    localeChangeInterceptor.setParamName("lang");
+	    registry.addInterceptor(localeChangeInterceptor);
 	}
 }
