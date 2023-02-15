@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "subject")
@@ -20,19 +20,23 @@ public class Matiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 	@Column(name = "label", length = 100)
+	@JsonView(Views.ViewBase.class)
 	private String libelle;
+	@JsonView(Views.ViewBase.class)
 	private int quest;
 	@ManyToOne
 	@JoinColumn(name = "cursus_id")
-	@JsonIgnore
+	@JsonView(Views.ViewMatiere.class)
 	private Filiere filiere;
 	@ManyToOne
 	@JoinColumn(name = "trainer_id")
-	@JsonIgnore
+	@JsonView(Views.ViewMatiere.class)
 	private Formateur formateur;
 
 	public Matiere() {
@@ -52,7 +56,7 @@ public class Matiere {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public int getVersion() {
 		return version;
 	}

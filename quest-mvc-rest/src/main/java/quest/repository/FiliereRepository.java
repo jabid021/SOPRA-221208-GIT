@@ -35,10 +35,10 @@ public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 	Optional<Filiere> findByIdWithReferentAndMatieres(@Param("id") Integer id);
 
 	@Query("select distinct f from Filiere f left join fetch f.matieres where f.id=:id")
-	Optional<Filiere> findByIdWithMatieres(Integer id);
+	Optional<Filiere> findByIdWithMatieres(@Param("id") Integer id);
 
 	@Query("select distinct f from Filiere f left join fetch f.stagiaires where f.id=:id")
-	Optional<Filiere> findByIdWithStagiaires(Integer id);
+	Optional<Filiere> findByIdWithStagiaires(@Param("id") Integer id);
 
 	@Query("select distinct f from Filiere f left join fetch f.matieres left join fetch f.stagiaires where f.id=:id")
 	Optional<Filiere> findByIdWithMatieresAndStagiaire(@Param("id") Integer id);

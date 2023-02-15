@@ -7,7 +7,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,6 +24,7 @@ import javax.persistence.Version;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "cursus")
@@ -32,23 +32,30 @@ public class Filiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 	@Column(name = "label", length = 255)
+	@JsonView(Views.ViewBase.class)
 	private String libelle;
 	@Column(name = "start")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate debut;
 	@Column(name = "end")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate fin;
 	@ManyToMany
 	@JoinTable(name = "cursus_trainee", uniqueConstraints = @UniqueConstraint(columnNames = { "cursus_id",
 			"trainee_id" }), joinColumns = @JoinColumn(name = "cursus_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
+	@JsonView(Views.ViewFiliereWithStagiaires.class)
 	private Set<Stagiaire> stagiaires = new HashSet<>();
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "referent_id")
+	@JsonView(Views.ViewFiliere.class)
 	private Formateur referent;
 	@OneToMany(mappedBy = "filiere")
 	private Set<Matiere> matieres = new HashSet<>();
