@@ -31,6 +31,7 @@ public class FormateurController {
 	public String list(Model model) {
 		List<Formateur> formateurs = formateurSrv.findAll();
 
+		model.addAttribute("testData", "mon test DATA");
 		model.addAttribute("formateurs", formateurs);
 
 		return "formateur/list";
