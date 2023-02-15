@@ -2,7 +2,6 @@ package quest.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "computer")
@@ -18,14 +17,18 @@ public class Ordinateur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 	@Column(name = "brand", length = 100)
+	@JsonView(Views.ViewBase.class)
 	private String marque;
+	@JsonView(Views.ViewBase.class)
 	private int ram;
-	@OneToOne(mappedBy = "ordinateur", fetch = FetchType.LAZY)
-	@JsonIgnore
+	@OneToOne(mappedBy = "ordinateur")
+	@JsonView(Views.ViewOrdinateur.class)
 	private Stagiaire stagiaire;
 
 	public Ordinateur() {

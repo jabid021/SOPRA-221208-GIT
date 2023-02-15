@@ -9,35 +9,37 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @DiscriminatorValue("stagiaire")
 public class Stagiaire extends Personne {
 
 	@Column(name = "birthdate")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate dtNaissance;
 	@Column(name = "grade", length = 6)
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewBase.class)
 	private NiveauEtude niveauEtude;
 	@ManyToMany(mappedBy = "stagiaires")
-	@JsonIgnore
+	@JsonView(Views.ViewStagiaireWithFilieres.class)
 	private List<Filiere> filieres = new ArrayList<>();
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "computer_id")
-	@JsonIgnore
+	@JsonView(Views.ViewStagiaire.class)
 	private Ordinateur ordinateur;
 
 	public Stagiaire() {
 		super();
 	}
 
-	public Stagiaire(Civilite civilite, String nom, String prenom, String email, LocalDate dtNaissance, NiveauEtude niveauEtude) {
+	public Stagiaire(Civilite civilite, String nom, String prenom, String email, LocalDate dtNaissance,
+			NiveauEtude niveauEtude) {
 		super(civilite, nom, prenom, email);
 		this.dtNaissance = dtNaissance;
 		this.niveauEtude = niveauEtude;

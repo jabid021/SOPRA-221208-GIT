@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import quest.model.Stagiaire;
+import quest.model.Views;
 import quest.repository.StagiaireRepository;
 
 @RestController
@@ -29,6 +32,7 @@ public class StagiaireRestController {
 	private StagiaireRepository stagiaireRepository;
 
 	@GetMapping("")
+	@JsonView(Views.ViewStagiaire.class)
 	public List<Stagiaire> findAll() {
 		List<Stagiaire> stagiaires = stagiaireRepository.findAll();
 
@@ -36,8 +40,9 @@ public class StagiaireRestController {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.ViewStagiaireWithFilieres.class)
 	public Stagiaire findById(@PathVariable Integer id) {
-		Optional<Stagiaire> optStagiaire = stagiaireRepository.findById(id);
+		Optional<Stagiaire> optStagiaire = stagiaireRepository.findByIdWithFilieres(id);
 
 		if(optStagiaire.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -47,6 +52,7 @@ public class StagiaireRestController {
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire create(@RequestBody Stagiaire stagiaire) {
 		stagiaire = stagiaireRepository.save(stagiaire);
 		
@@ -54,6 +60,7 @@ public class StagiaireRestController {
 	}
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire update(@RequestBody Stagiaire stagiaire, @PathVariable Integer id) {
 		if(id != stagiaire.getId()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -69,6 +76,7 @@ public class StagiaireRestController {
 	}
 	
 	@PatchMapping("/{id}")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire partialUpdate(@PathVariable Integer id, @RequestBody Map<String, Object> fields) {
 		Optional<Stagiaire> optStagiaire = stagiaireRepository.findById(id);
 

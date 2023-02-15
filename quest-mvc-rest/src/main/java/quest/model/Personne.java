@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "person", uniqueConstraints = @UniqueConstraint(columnNames = { "last_name", "first_name" }))
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,19 +27,26 @@ import javax.persistence.Version;
 public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 	@Column(name = "civility", length = 4)
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewBase.class)
 	private Civilite civilite;
 	@Column(name = "last_name", length = 100, nullable = false)
+	@JsonView(Views.ViewBase.class)
 	private String nom;
 	@Column(name = "first_name", length = 100)
+	@JsonView(Views.ViewBase.class)
 	private String prenom;
 	@Column(length = 255)
+	@JsonView(Views.ViewBase.class)
 	private String email;
 	@Embedded
+	@JsonView(Views.ViewBase.class)
 	private Adresse adresse;
 
 	public Personne() {

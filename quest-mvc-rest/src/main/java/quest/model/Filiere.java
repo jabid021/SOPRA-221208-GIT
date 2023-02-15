@@ -46,19 +46,15 @@ public class Filiere {
 	@ManyToMany
 	@JoinTable(name = "cursus_trainee", uniqueConstraints = @UniqueConstraint(columnNames = { "cursus_id",
 			"trainee_id" }), joinColumns = @JoinColumn(name = "cursus_id"), inverseJoinColumns = @JoinColumn(name = "trainee_id"))
-	@JsonIgnore
 	private Set<Stagiaire> stagiaires = new HashSet<>();
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "referent_id")
-	@JsonIgnore
 	private Formateur referent;
 	@OneToMany(mappedBy = "filiere")
-	@JsonIgnore
 	private Set<Matiere> matieres = new HashSet<>();
 	@OneToOne
 	@JoinColumns({ @JoinColumn(name = "classroom_name", referencedColumnName = "name"),
 			@JoinColumn(name = "classroom_floor", referencedColumnName = "floor") })
-	@JsonIgnore
 	private Salle salle;
 
 	@ManyToOne
