@@ -78,4 +78,11 @@ public class OrdinateurRestController {
 		ordinateurRepository.deleteById(id);
 	}
 
+	@GetMapping({"/orphans", "/orphans/{id}"})
+	@JsonView(Views.ViewOrdinateur.class)
+	public List<Ordinateur> findAllOrphans(@PathVariable(required = false) Integer id) {
+		List<Ordinateur> ordinateurs = ordinateurRepository.findAllOrphans(id);
+
+		return ordinateurs;
+	}
 }
