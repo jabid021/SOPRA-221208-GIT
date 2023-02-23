@@ -36,4 +36,7 @@ public class Views {
 
 	public static class ViewStagiaireWithFilieres extends ViewStagiaire {
 	}
+	
+	public static class ViewUtilisateur extends ViewBase {
+	}
 }

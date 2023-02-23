@@ -16,30 +16,52 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "users")
 public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Column(name="login", length = 100, nullable = false, unique = true)
+	@JsonView(Views.ViewBase.class)
 	private String identifiant;
 	@Column(name="password", length = 255)
+	@JsonView(Views.ViewBase.class)
 	private String motDePasse;
 	@Column(name="last_name", length = 100)
+	@JsonView(Views.ViewBase.class)
 	private String nom;
 	@Column(name="first_name", length = 100)
+	@JsonView(Views.ViewBase.class)
 	private String prenom;
+	@JsonView(Views.ViewBase.class)
 	private boolean disabled = false;
 	@ElementCollection(fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "users_id"))
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.ViewUtilisateur.class)
 	private Set<Roles> roles = new HashSet<>();
 
 	public Utilisateur() {
 		super();
 	}
+	
+	
+
+	public Utilisateur(String identifiant, String motDePasse, String nom, String prenom, boolean disabled) {
+		super();
+		this.identifiant = identifiant;
+		this.motDePasse = motDePasse;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.disabled = disabled;
+	}
+
+
 
 	public Integer getId() {
 		return id;
