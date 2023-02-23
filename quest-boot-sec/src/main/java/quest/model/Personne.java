@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
@@ -48,6 +49,8 @@ public abstract class Personne {
 	@Embedded
 	@JsonView(Views.ViewBase.class)
 	private Adresse adresse;
+	@OneToOne(mappedBy = "personne")
+	private Utilisateur utilisateur;
 
 	public Personne() {
 		super();

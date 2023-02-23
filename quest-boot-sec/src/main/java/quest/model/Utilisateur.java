@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -25,16 +26,16 @@ public class Utilisateur {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(Views.ViewBase.class)
 	private Integer id;
-	@Column(name="login", length = 100, nullable = false, unique = true)
+	@Column(name = "login", length = 100, nullable = false, unique = true)
 	@JsonView(Views.ViewBase.class)
 	private String identifiant;
-	@Column(name="password", length = 255)
+	@Column(name = "password", length = 255)
 	@JsonView(Views.ViewBase.class)
 	private String motDePasse;
-	@Column(name="last_name", length = 100)
+	@Column(name = "last_name", length = 100)
 	@JsonView(Views.ViewBase.class)
 	private String nom;
-	@Column(name="first_name", length = 100)
+	@Column(name = "first_name", length = 100)
 	@JsonView(Views.ViewBase.class)
 	private String prenom;
 	@JsonView(Views.ViewBase.class)
@@ -46,11 +47,13 @@ public class Utilisateur {
 	@JsonView(Views.ViewUtilisateur.class)
 	private Set<Roles> roles = new HashSet<>();
 
+	@OneToOne
+	@JoinColumn(name = "person_id")
+	private Personne personne;
+
 	public Utilisateur() {
 		super();
 	}
-	
-	
 
 	public Utilisateur(String identifiant, String motDePasse, String nom, String prenom, boolean disabled) {
 		super();
@@ -60,8 +63,6 @@ public class Utilisateur {
 		this.prenom = prenom;
 		this.disabled = disabled;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -117,6 +118,14 @@ public class Utilisateur {
 
 	public void setRoles(Set<Roles> roles) {
 		this.roles = roles;
+	}
+
+	public Personne getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
 	}
 
 }
